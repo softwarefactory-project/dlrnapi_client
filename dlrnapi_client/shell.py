@@ -23,6 +23,11 @@ from dlrnapi_client.rest import ApiException
 def get_last_tested_repo(api_instance, options):
     params = dlrnapi_client.Params()  # Params | The JSON params to post
     params.max_age = options.max_age
+    if options.success:
+        params.success = str(options.success)
+    params.job_id = options.job_id
+    params.sequential_mode = str(options.sequential)
+    params.previous_job_id = options.previous_job_id
 
     try:
         api_response = api_instance.api_last_tested_repo_get(params)
@@ -31,8 +36,77 @@ def get_last_tested_repo(api_instance, options):
         print("Exception when calling DefaultApi->api_last_tested_repo_get:"
               " %s\n" % e)
 
+
+def post_last_tested_repo(api_instance, options):
+    params = dlrnapi_client.Params1()  # Params1 | The JSON params to post
+    params.max_age = options.max_age
+    params.reporting_job_id = options.reporting_job_id
+    if options.success:
+        params.success = str(options.success)
+    params.job_id = options.job_id
+    params.sequential_mode = str(options.sequential)
+    params.previous_job_id = options.previous_job_id
+
+    try:
+        api_response = api_instance.api_last_tested_repo_post(params)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->api_last_tested_repo_post:"
+              " %s\n" % e)
+
+
+def repo_status(api_instance, options):
+    params = dlrnapi_client.Params2()  # Params2 | The JSON params to post
+    params.commit_hash = options.commit_hash
+    params.distro_hash = options.distro_hash
+    if options.success:
+        params.success = str(options.success)
+
+    try:
+        api_response = api_instance.api_repo_status_get(params)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->api_repo_status_get:"
+              " %s\n" % e)
+
+
+def repo_promote(api_instance, options):
+    params = dlrnapi_client.Params4()  # Params4 | The JSON params to post
+    params.commit_hash = options.commit_hash
+    params.distro_hash = options.distro_hash
+    params.promote_name = options.promote_name
+    try:
+        api_response = api_instance.api_promote_post(params)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->api_promote_post:"
+              " %s\n" % e)
+
+
+def report_result(api_instance, options):
+    params = dlrnapi_client.Params3()  # Params3 | The JSON params to post
+    params.job_id = options.job_id
+    params.commit_hash = options.commit_hash
+    params.distro_hash = options.distro_hash
+    params.success = str(options.success)
+    params.url = options.info_url
+    params.timestamp = options.timestamp
+    params.notes = options.notes
+
+    try:
+        api_response = api_instance.api_report_result_post(params)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->api_report_result_post:"
+              " %s\n" % e)
+
+
 command_funcs = {
-    'get_last_tested_repo': get_last_tested_repo
+    'repo-get': get_last_tested_repo,
+    'repo-use': post_last_tested_repo,
+    'repo-status': repo_status,
+    'report-result': report_result,
+    'repo-promote': repo_promote,
 }
 
 
@@ -42,16 +116,115 @@ def main():
     parser.add_argument('--url',
                         required=True,
                         help='URL to use')
+    parser.add_argument('--username', '-u',
+                        help='username for authentication')
+    parser.add_argument('--password', '-p',
+                        help='password for authentication')
+
     subparsers = parser.add_subparsers(dest='command')
-    # Subcommand last_tested_repo
-    parser_last = subparsers.add_parser('get_last_tested_repo',
+    # Subcommand get-repo
+    parser_last = subparsers.add_parser('repo-get',
                                         help='Get last tested repo')
-    parser_last.add_argument('--max_age', type=int, default=0,
+    parser_last.add_argument('--max-age', type=int, default=0,
                              help='max_age')
+    parser_last.add_argument('--success', type=str, default=None,
+                             help='Find repos with a successful/unsuccessful '
+                                  'vote, if specified')
+    parser_last.add_argument('--job-id', type=str, default=None,
+                             help='Name of the CI that sent the vote. If not '
+                                  'set, no filter will be set on CI')
+    parser_last.add_argument('--sequential-mode', dest='sequential',
+                             action='store_true',
+                             help='Use the sequential mode algorithm. In this '
+                                  'case, return the last tested repo within '
+                                  'that timeframe for the CI job described by '
+                                  '--previous-job-id')
+    parser_last.set_defaults(sequential=False)
+
+    parser_last.add_argument('--previous-job-id', type=str, default=None,
+                             help='If --sequential-mode is set, look for jobs'
+                                  ' tested by this CI')
+
+    # Subcommand use-repo
+    parser_use_last = subparsers.add_parser('repo-use',
+                                            help='Get the last tested repo '
+                                                 'since a specific time '
+                                                 '(optionally for a CI job), '
+                                                 'and add an "in progress" '
+                                                 'entry in the CI job table '
+                                                 'for this.')
+    parser_use_last.add_argument('--max-age', type=int, default=0,
+                                 help='max_age')
+    parser_use_last.add_argument('--reporting-job-id', type=str, required=True,
+                                 help=' Name of the CI that will add the "in '
+                                      'progress" entry in the CI job table.')
+    parser_use_last.add_argument('--success', type=str, default=None,
+                                 help='Find repos with a successful/'
+                                      'unsuccessful vote, if specified')
+    parser_use_last.add_argument('--job-id', type=str, default=None,
+                                 help='Name of the CI that sent the vote. If '
+                                      'not set, no filter will be set on CI')
+    parser_use_last.add_argument('--sequential-mode', dest='sequential',
+                                 action='store_true',
+                                 help='Use the sequential mode algorithm. In '
+                                      'this case, return the last tested repo '
+                                      'within that timeframe for the CI job '
+                                      'described by --previous-job-id')
+    parser_use_last.set_defaults(sequential=False)
+    parser_use_last.add_argument('--previous-job-id', type=str, default=None,
+                                 help='If --sequential-mode is true, look for '
+                                      'jobs tested by this CI')
+
+    # Subcommand repo-status
+    parser_st = subparsers.add_parser('repo-status',
+                                      help='Get all the CI reports for a '
+                                           'specific repository.')
+    parser_st.add_argument('--commit-hash', type=str, required=True,
+                           help='commit_hash of the repo to fetch '
+                                'information for.')
+    parser_st.add_argument('--distro-hash', type=str, required=True,
+                           help='distro_hash of the repo to fetch '
+                                'information for.')
+    parser_st.add_argument('--success', type=str, default=None,
+                           help='If set to a value, only return the CI '
+                                'reports with the specified vote. If not'
+                                ' set, return all CI reports.')
+
+    # Subcommand report-result
+    parser_rep = subparsers.add_parser('report-result',
+                                       help='Report the result of a CI job')
+    parser_rep.add_argument('--job-id', type=str, required=True,
+                            help='Name of the CI sending the vote')
+    parser_rep.add_argument('--commit-hash', type=str, required=True,
+                            help='commit_hash of tested repo')
+    parser_rep.add_argument('--distro-hash', type=str, required=True,
+                            help='distro_hash of tested repo')
+    parser_rep.add_argument('--info-url', type=str, required=True,
+                            help='URL where to find additional information '
+                                 'from the CI execution')
+    parser_rep.add_argument('--timestamp', type=str, required=True,
+                            help='Timestamp (in seconds since the epoch)')
+    parser_rep.add_argument('--success', type=str, required=True,
+                            help='Was the CI execution successful?')
+    parser_rep.add_argument('--notes', type=str,
+                            help='Additional notes')
+
+    # Subcommand promote
+    parser_prom = subparsers.add_parser('repo-promote',
+                                        help='Promote a repository')
+    parser_prom.add_argument('--commit-hash', type=str, required=True,
+                             help='commit_hash of the repo to be promoted')
+    parser_prom.add_argument('--distro-hash', type=str, required=True,
+                             help='distro_hash of the repo to be promoted')
+    parser_prom.add_argument('--promote-name', type=str, required=True,
+                             help='Name to be used for the promotion')
 
     options, args = parser.parse_known_args(sys.argv[1:])
+
     # create an instance of the API class
     api_client = dlrnapi_client.ApiClient(host=options.url)
+    dlrnapi_client.configuration.username = options.username
+    dlrnapi_client.configuration.password = options.password
     api_instance = dlrnapi_client.DefaultApi(api_client=api_client)
 
     command_funcs[options.command](api_instance, options)

@@ -37,7 +37,7 @@ class Params3(object):
             'url': 'str',
             'timestamp': 'int',
             'success': 'bool',
-            'notes': 'bool'
+            'notes': 'str'
         }
 
         self.attribute_map = {
@@ -215,7 +215,7 @@ class Params3(object):
         Additional notes 
 
         :return: The notes of this Params3.
-        :rtype: bool
+        :rtype: str
         """
         return self._notes
 
@@ -226,7 +226,7 @@ class Params3(object):
         Additional notes 
 
         :param notes: The notes of this Params3.
-        :type: bool
+        :type: str
         """
 
         self._notes = notes

@@ -249,7 +249,7 @@ class DefaultApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def api_promote_post(self, **kwargs):
+    def api_promote_post(self, params, **kwargs):
         """
         Promote a repository. This can be implemented as a local symlink creation in the DLRN worker, or any other form in the future.  Note the API will refuse to promote using promote_name=\"consistent\" or \"current\", since those are reserved keywords for DLRN. 
         This method makes a synchronous HTTP request by default. To make an
@@ -258,23 +258,23 @@ class DefaultApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_promote_post(callback=callback_function)
+        >>> thread = api.api_promote_post(params, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params4 params: The JSON params to post
+        :param Params4 params: The JSON params to post (required)
         :return: Promotion
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.api_promote_post_with_http_info(**kwargs)
+            return self.api_promote_post_with_http_info(params, **kwargs)
         else:
-            (data) = self.api_promote_post_with_http_info(**kwargs)
+            (data) = self.api_promote_post_with_http_info(params, **kwargs)
             return data
 
-    def api_promote_post_with_http_info(self, **kwargs):
+    def api_promote_post_with_http_info(self, params, **kwargs):
         """
         Promote a repository. This can be implemented as a local symlink creation in the DLRN worker, or any other form in the future.  Note the API will refuse to promote using promote_name=\"consistent\" or \"current\", since those are reserved keywords for DLRN. 
         This method makes a synchronous HTTP request by default. To make an
@@ -283,11 +283,11 @@ class DefaultApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_promote_post_with_http_info(callback=callback_function)
+        >>> thread = api.api_promote_post_with_http_info(params, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params4 params: The JSON params to post
+        :param Params4 params: The JSON params to post (required)
         :return: Promotion
                  If the method is called asynchronously,
                  returns the request thread.
@@ -308,6 +308,10 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'params' is set
+        if ('params' not in params) or (params['params'] is None):
+            raise ValueError("Missing the required parameter `params` when calling `api_promote_post`")
+
 
         collection_formats = {}
 
@@ -350,7 +354,7 @@ class DefaultApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def api_remote_import_post(self, **kwargs):
+    def api_remote_import_post(self, params, **kwargs):
         """
         Import a commit built by another instance. This API call mimics the behavior of the ``dlrn-remote`` command, with the only exception of not being able to specify a custom rdoinfo location.       
         This method makes a synchronous HTTP request by default. To make an
@@ -359,23 +363,23 @@ class DefaultApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_remote_import_post(callback=callback_function)
+        >>> thread = api.api_remote_import_post(params, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params5 params: The JSON params to post
+        :param Params5 params: The JSON params to post (required)
         :return: InlineResponse201
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.api_remote_import_post_with_http_info(**kwargs)
+            return self.api_remote_import_post_with_http_info(params, **kwargs)
         else:
-            (data) = self.api_remote_import_post_with_http_info(**kwargs)
+            (data) = self.api_remote_import_post_with_http_info(params, **kwargs)
             return data
 
-    def api_remote_import_post_with_http_info(self, **kwargs):
+    def api_remote_import_post_with_http_info(self, params, **kwargs):
         """
         Import a commit built by another instance. This API call mimics the behavior of the ``dlrn-remote`` command, with the only exception of not being able to specify a custom rdoinfo location.       
         This method makes a synchronous HTTP request by default. To make an
@@ -384,11 +388,11 @@ class DefaultApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_remote_import_post_with_http_info(callback=callback_function)
+        >>> thread = api.api_remote_import_post_with_http_info(params, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params5 params: The JSON params to post
+        :param Params5 params: The JSON params to post (required)
         :return: InlineResponse201
                  If the method is called asynchronously,
                  returns the request thread.
@@ -409,6 +413,10 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'params' is set
+        if ('params' not in params) or (params['params'] is None):
+            raise ValueError("Missing the required parameter `params` when calling `api_remote_import_post`")
+
 
         collection_formats = {}
 
@@ -451,45 +459,47 @@ class DefaultApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def api_repo_status_get(self, **kwargs):
-        """
-        Get all the CI reports for a specific repository. 
+    def api_repo_status_get(self, params, **kwargs):
+        """Get all the CI reports for a specific repository.
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_repo_status_get(callback=callback_function)
+        >>> thread = api.api_repo_status_get(params,
+                                             callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params2 params: The JSON params to post
+        :param Params2 params: The JSON params to post (required)
         :return: list[CIVote]
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.api_repo_status_get_with_http_info(**kwargs)
+            return self.api_repo_status_get_with_http_info(params, **kwargs)
         else:
-            (data) = self.api_repo_status_get_with_http_info(**kwargs)
+            (data) = self.api_repo_status_get_with_http_info(params, **kwargs)
             return data
 
-    def api_repo_status_get_with_http_info(self, **kwargs):
-        """
-        Get all the CI reports for a specific repository. 
+    def api_repo_status_get_with_http_info(self, params, **kwargs):
+        """Get all the CI reports for a specific repository.
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_repo_status_get_with_http_info(callback=callback_function)
+        >>> thread = api.api_repo_status_get_with_http_info(params,
+                                                callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params2 params: The JSON params to post
+        :param Params2 params: The JSON params to post (required)
         :return: list[CIVote]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -510,6 +520,10 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'params' is set
+        if ('params' not in params) or (params['params'] is None):
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_repo_status_get`")
 
         collection_formats = {}
 
@@ -547,37 +561,41 @@ class DefaultApi(object):
                                         response_type='list[CIVote]',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def api_report_result_post(self, **kwargs):
-        """
-        Report the result of a CI job. 
+    def api_report_result_post(self, params, **kwargs):
+        """Report the result of a CI job.
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_report_result_post(callback=callback_function)
+        >>> thread = api.api_report_result_post(params,
+                                                callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params3 params: The JSON params to post
+        :param Params3 params: The JSON params to post (required)
         :return: CIVote
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.api_report_result_post_with_http_info(**kwargs)
+            return self.api_report_result_post_with_http_info(params, **kwargs)
         else:
-            (data) = self.api_report_result_post_with_http_info(**kwargs)
+            (data) = self.api_report_result_post_with_http_info(params, **kwargs)
             return data
 
-    def api_report_result_post_with_http_info(self, **kwargs):
+    def api_report_result_post_with_http_info(self, params, **kwargs):
         """
         Report the result of a CI job. 
         This method makes a synchronous HTTP request by default. To make an
@@ -586,11 +604,11 @@ class DefaultApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_report_result_post_with_http_info(callback=callback_function)
+        >>> thread = api.api_report_result_post_with_http_info(params, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params3 params: The JSON params to post
+        :param Params3 params: The JSON params to post (required)
         :return: CIVote
                  If the method is called asynchronously,
                  returns the request thread.
@@ -611,6 +629,10 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'params' is set
+        if ('params' not in params) or (params['params'] is None):
+            raise ValueError("Missing the required parameter `params` when calling `api_report_result_post`")
+
 
         collection_formats = {}
 
