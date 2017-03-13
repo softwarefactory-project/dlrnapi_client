@@ -14,13 +14,13 @@
 from __future__ import absolute_import
 
 # import models into model package
-from dlrnapi_client.models.ci_vote import CIVote
-from dlrnapi_client.models.inline_response_201 import InlineResponse201
-from dlrnapi_client.models.params import Params
-from dlrnapi_client.models.params_1 import Params1
-from dlrnapi_client.models.params_2 import Params2
-from dlrnapi_client.models.params_3 import Params3
-from dlrnapi_client.models.params_4 import Params4
-from dlrnapi_client.models.params_5 import Params5
-from dlrnapi_client.models.promotion import Promotion
-from dlrnapi_client.models.repo import Repo
+from dlrnapi_client.models.ci_vote import CIVote  # noqa
+from dlrnapi_client.models.inline_response_201 import InlineResponse201  # noqa
+from dlrnapi_client.models.params import Params  # noqa
+from dlrnapi_client.models.params_1 import Params1  # noqa
+from dlrnapi_client.models.params_2 import Params2  # noqa
+from dlrnapi_client.models.params_3 import Params3  # noqa
+from dlrnapi_client.models.params_4 import Params4  # noqa
+from dlrnapi_client.models.params_5 import Params5  # noqa
+from dlrnapi_client.models.promotion import Promotion  # noqa
+from dlrnapi_client.models.repo import Repo  # noqa

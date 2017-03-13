@@ -102,7 +102,8 @@ class DefaultApi(object):
         del params['kwargs']
         # verify the required parameter 'params' is set
         if ('params' not in params) or (params['params'] is None):
-            raise ValueError("Missing the required parameter `params` when calling `api_last_tested_repo_get`")
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_last_tested_repo_get`")
 
         collection_formats = {}
 
@@ -140,21 +141,47 @@ class DefaultApi(object):
                                         response_type='Repo',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
                                         collection_formats=collection_formats)
 
     def api_last_tested_repo_post(self, params, **kwargs):
-        """
-        Get the last tested repo since a specific time (optionally for a CI job), and add an \"in progress\" entry in the CI job table for this.  If a job_id is specified, the order of precedence for the repo returned is:  - The last tested repo within that timeframe for that CI job. - The last tested repo within that timeframe for any CI job, so we can have   several CIs converge on a single repo. - The last \"consistent\" repo, if no repo has been tested in the timeframe.  If ``sequential_mode`` is set to true, a different algorithm is used. Another parameter ``previous_job_id`` needs to be specified, and the order of precedence for the repo returned is:  - The last tested repo within that timeframe for the CI job described by   ``previous_job_id``. - If no repo for ``previous_job_id`` is found, an error will be returned  The sequential mode is meant to be used by CI pipelines, where a CI (n) job needs to use the same repo tested by CI (n-1). 
+        """Get the last tested repo since a specific time
+
+        (optionally for a CI job), and add an \"in progress\" entry in the CI
+        job table for this.
+
+        If a job_id is specified, the order of precedence for the repo returned
+        is:
+
+        - The last tested repo within that timeframe for that CI job.
+        - The last tested repo within that timeframe for any CI job, so we can
+          have several CIs converge on a single repo.
+        - The last \"consistent\" repo, if no repo has been tested in the
+          timeframe.
+
+        If ``sequential_mode`` is set to true, a different algorithm is used.
+        Another parameter ``previous_job_id`` needs to be specified, and the
+        order of precedence for the repo returned is:
+        - The last tested repo within that timeframe for the CI job described
+          by ``previous_job_id``.
+        - If no repo for ``previous_job_id`` is found, an error will be
+          returned
+        The sequential mode is meant to be used by CI pipelines, where a CI (n)
+        job needs to use the same repo tested by CI (n-1).
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_last_tested_repo_post(params, callback=callback_function)
+        >>> thread = api.api_last_tested_repo_post(params,
+                                                   callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -165,21 +192,45 @@ class DefaultApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.api_last_tested_repo_post_with_http_info(params, **kwargs)
+            return self.api_last_tested_repo_post_with_http_info(params,
+                                                                 **kwargs)
         else:
-            (data) = self.api_last_tested_repo_post_with_http_info(params, **kwargs)
+            (data) = self.api_last_tested_repo_post_with_http_info(params,
+                                                                   **kwargs)
             return data
 
     def api_last_tested_repo_post_with_http_info(self, params, **kwargs):
-        """
-        Get the last tested repo since a specific time (optionally for a CI job), and add an \"in progress\" entry in the CI job table for this.  If a job_id is specified, the order of precedence for the repo returned is:  - The last tested repo within that timeframe for that CI job. - The last tested repo within that timeframe for any CI job, so we can have   several CIs converge on a single repo. - The last \"consistent\" repo, if no repo has been tested in the timeframe.  If ``sequential_mode`` is set to true, a different algorithm is used. Another parameter ``previous_job_id`` needs to be specified, and the order of precedence for the repo returned is:  - The last tested repo within that timeframe for the CI job described by   ``previous_job_id``. - If no repo for ``previous_job_id`` is found, an error will be returned  The sequential mode is meant to be used by CI pipelines, where a CI (n) job needs to use the same repo tested by CI (n-1). 
+        """Get the last tested repo since a specific time
+
+        (optionally for a CI job), and add an \"in progress\" entry in the CI
+        job table for this.
+
+        If a job_id is specified, the order of precedence for the repo returned
+        is:
+
+        - The last tested repo within that timeframe for that CI job.
+        - The last tested repo within that timeframe for any CI job, so we can
+          have several CIs converge on a single repo.
+        - The last \"consistent\" repo, if no repo has been tested in the
+          timeframe.
+
+        If ``sequential_mode`` is set to true, a different algorithm is used.
+        Another parameter ``previous_job_id`` needs to be specified, and the
+        order of precedence for the repo returned is:
+        - The last tested repo within that timeframe for the CI job described
+          by ``previous_job_id``.
+        - If no repo for ``previous_job_id`` is found, an error will be
+          returned
+        The sequential mode is meant to be used by CI pipelines, where a CI (n)
+        job needs to use the same repo tested by CI (n-1).
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_last_tested_repo_post_with_http_info(params, callback=callback_function)
+        >>> thread = api.api_last_tested_repo_post_with_http_info(params,
+                                                    callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -206,7 +257,8 @@ class DefaultApi(object):
         del params['kwargs']
         # verify the required parameter 'params' is set
         if ('params' not in params) or (params['params'] is None):
-            raise ValueError("Missing the required parameter `params` when calling `api_last_tested_repo_post`")
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_last_tested_repo_post`")
 
         collection_formats = {}
 
@@ -244,14 +296,21 @@ class DefaultApi(object):
                                         response_type='Repo',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
                                         collection_formats=collection_formats)
 
     def api_promote_post(self, params, **kwargs):
-        """
-        Promote a repository. This can be implemented as a local symlink creation in the DLRN worker, or any other form in the future.  Note the API will refuse to promote using promote_name=\"consistent\" or \"current\", since those are reserved keywords for DLRN. 
+        """Promote a repository.
+
+        This can be implemented as a local symlink creation in the DLRN worker,
+        or any other form in the future.  Note the API will refuse to promote
+        using promote_name=\"consistent\" or \"current\", since those are
+        reserved keywords for DLRN.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
@@ -275,15 +334,20 @@ class DefaultApi(object):
             return data
 
     def api_promote_post_with_http_info(self, params, **kwargs):
-        """
-        Promote a repository. This can be implemented as a local symlink creation in the DLRN worker, or any other form in the future.  Note the API will refuse to promote using promote_name=\"consistent\" or \"current\", since those are reserved keywords for DLRN. 
+        """Promote a repository.
+
+        This can be implemented as a local symlink creation in the DLRN worker,
+        or any other form in the future.  Note the API will refuse to promote
+        using promote_name=\"consistent\" or \"current\", since those are
+        reserved keywords for DLRN.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_promote_post_with_http_info(params, callback=callback_function)
+        >>> thread = api.api_promote_post_with_http_info(params,
+                                                     callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -310,8 +374,8 @@ class DefaultApi(object):
         del params['kwargs']
         # verify the required parameter 'params' is set
         if ('params' not in params) or (params['params'] is None):
-            raise ValueError("Missing the required parameter `params` when calling `api_promote_post`")
-
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_promote_post`")
 
         collection_formats = {}
 
@@ -349,21 +413,29 @@ class DefaultApi(object):
                                         response_type='Promotion',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
                                         collection_formats=collection_formats)
 
     def api_remote_import_post(self, params, **kwargs):
-        """
-        Import a commit built by another instance. This API call mimics the behavior of the ``dlrn-remote`` command, with the only exception of not being able to specify a custom rdoinfo location.       
+        """Import a commit built by another instance.
+
+        This API call mimics the behavior of the ``dlrn-remote`` command,
+        with the only exception of not being able to specify a custom
+        rdoinfo location.
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_remote_import_post(params, callback=callback_function)
+        >>> thread = api.api_remote_import_post(params,
+                                                callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -376,19 +448,25 @@ class DefaultApi(object):
         if kwargs.get('callback'):
             return self.api_remote_import_post_with_http_info(params, **kwargs)
         else:
-            (data) = self.api_remote_import_post_with_http_info(params, **kwargs)
+            (data) = self.api_remote_import_post_with_http_info(params,
+                                                                **kwargs)
             return data
 
     def api_remote_import_post_with_http_info(self, params, **kwargs):
-        """
-        Import a commit built by another instance. This API call mimics the behavior of the ``dlrn-remote`` command, with the only exception of not being able to specify a custom rdoinfo location.       
+        """Import a commit built by another instance.
+
+        This API call mimics the behavior of the ``dlrn-remote`` command,
+        with the only exception of not being able to specify a custom
+        rdoinfo location.
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_remote_import_post_with_http_info(params, callback=callback_function)
+        >>> thread = api.api_remote_import_post_with_http_info(params,
+                                                   callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -415,8 +493,8 @@ class DefaultApi(object):
         del params['kwargs']
         # verify the required parameter 'params' is set
         if ('params' not in params) or (params['params'] is None):
-            raise ValueError("Missing the required parameter `params` when calling `api_remote_import_post`")
-
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_remote_import_post`")
 
         collection_formats = {}
 
@@ -454,9 +532,12 @@ class DefaultApi(object):
                                         response_type='InlineResponse201',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
                                         collection_formats=collection_formats)
 
     def api_repo_status_get(self, params, **kwargs):
@@ -592,19 +673,21 @@ class DefaultApi(object):
         if kwargs.get('callback'):
             return self.api_report_result_post_with_http_info(params, **kwargs)
         else:
-            (data) = self.api_report_result_post_with_http_info(params, **kwargs)
+            (data) = self.api_report_result_post_with_http_info(params,
+                                                                **kwargs)
             return data
 
     def api_report_result_post_with_http_info(self, params, **kwargs):
-        """
-        Report the result of a CI job. 
+        """Report the result of a CI job.
+
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_report_result_post_with_http_info(params, callback=callback_function)
+        >>> thread = api.api_report_result_post_with_http_info(params,
+                                                    callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -631,8 +714,8 @@ class DefaultApi(object):
         del params['kwargs']
         # verify the required parameter 'params' is set
         if ('params' not in params) or (params['params'] is None):
-            raise ValueError("Missing the required parameter `params` when calling `api_report_result_post`")
-
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_report_result_post`")
 
         collection_formats = {}
 
@@ -670,7 +753,10 @@ class DefaultApi(object):
                                         response_type='CIVote',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
                                         collection_formats=collection_formats)
