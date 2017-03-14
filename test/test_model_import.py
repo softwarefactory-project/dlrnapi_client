@@ -15,12 +15,11 @@ from __future__ import absolute_import
 
 import unittest
 
-import dlrnapi_client
-from dlrnapi_client.models.params_4 import Params4
+from dlrnapi_client.models.model_import import ModelImport
 
 
-class TestParams4(unittest.TestCase):
-    """Params4 unit test stubs """
+class TestModelImport(unittest.TestCase):
+    """ModelImport unit test stubs """
 
     def setUp(self):
         pass
@@ -28,9 +27,11 @@ class TestParams4(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testParams4(self):
-        """Test Params4 """
-        model = dlrnapi_client.models.params_4.Params4()
+    def testModelImport(self):
+        """Test ModelImport """
+        model = ModelImport()
+        expected = {'repo_url': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

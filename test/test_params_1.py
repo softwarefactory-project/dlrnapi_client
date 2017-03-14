@@ -30,6 +30,10 @@ class TestParams1(unittest.TestCase):
     def testParams1(self):
         """Test Params1 """
         model = Params1()
+        expected = {'max_age': None, 'job_id': None, 'success': None,
+                    'previous_job_id': None, 'sequential_mode': None,
+                    'reporting_job_id': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

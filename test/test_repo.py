@@ -15,7 +15,6 @@ from __future__ import absolute_import
 
 import unittest
 
-import dlrnapi_client
 from dlrnapi_client.models.repo import Repo
 
 
@@ -30,7 +29,11 @@ class TestRepo(unittest.TestCase):
 
     def testRepo(self):
         """Test Repo """
-        model = dlrnapi_client.models.repo.Repo()
+        model = Repo()
+        expected = {'job_id': None, 'success': None, 'timestamp': None,
+                    'distro_hash': None, 'commit_hash': None,
+                    'in_progress': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

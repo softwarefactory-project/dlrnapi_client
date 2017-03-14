@@ -30,6 +30,8 @@ class TestParams2(unittest.TestCase):
     def testParams2(self):
         """Test Params2 """
         model = Params2()
+        expected = {'commit_hash': None, 'success': None, 'distro_hash': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

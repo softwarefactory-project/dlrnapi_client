@@ -173,7 +173,7 @@ class Configuration(object):
         if (self.api_key.get(identifier) and
             self.api_key_prefix.get(identifier)):  # noqa
             return self.api_key_prefix[identifier] + ' ' +\
-                   self.api_key[identifier]
+                self.api_key[identifier]
         elif self.api_key.get(identifier):
             return self.api_key[identifier]
 

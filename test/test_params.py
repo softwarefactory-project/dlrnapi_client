@@ -15,7 +15,6 @@ from __future__ import absolute_import
 
 import unittest
 
-import dlrnapi_client
 from dlrnapi_client.models.params import Params
 
 
@@ -30,7 +29,10 @@ class TestParams(unittest.TestCase):
 
     def testParams(self):
         """Test Params """
-        model = dlrnapi_client.models.params.Params()
+        model = Params()
+        expected = {'max_age': None, 'sequential_mode': None, 'job_id': None,
+                    'success': None, 'previous_job_id': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

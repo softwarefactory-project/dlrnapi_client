@@ -321,7 +321,7 @@ class DefaultApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params4 params: The JSON params to post (required)
+        :param Promotion params: The JSON params to post (required)
         :return: Promotion
                  If the method is called asynchronously,
                  returns the request thread.
@@ -351,7 +351,7 @@ class DefaultApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params4 params: The JSON params to post (required)
+        :param Promotion params: The JSON params to post (required)
         :return: Promotion
                  If the method is called asynchronously,
                  returns the request thread.
@@ -439,8 +439,8 @@ class DefaultApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params5 params: The JSON params to post (required)
-        :return: InlineResponse201
+        :param ModelImport params: The JSON params to post (required)
+        :return: ModelImport
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -470,8 +470,8 @@ class DefaultApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param Params5 params: The JSON params to post (required)
-        :return: InlineResponse201
+        :param ModelImport params: The JSON params to post (required)
+        :return: ModelImport
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -529,7 +529,7 @@ class DefaultApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse201',
+                                        response_type='ModelImport',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get(

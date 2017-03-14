@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_remote_import_post**
-> InlineResponse201 api_remote_import_post(params=params)
+> ModelImport api_remote_import_post(params=params)
 
 
 
@@ -182,7 +182,7 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-params = swagger_client.Params5() # Params5 | The JSON params to post (optional)
+params = swagger_client.ModelImport() # ModelImport | The JSON params to post (optional)
 
 try: 
     api_response = api_instance.api_remote_import_post(params=params)
@@ -195,11 +195,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**Params5**](Params5.md)| The JSON params to post | [optional] 
+ **params** | [**ModelImport**](ModelImport.md)| The JSON params to post | [optional] 
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**ModelImport**](ModelImport.md)
 
 ### Authorization
 

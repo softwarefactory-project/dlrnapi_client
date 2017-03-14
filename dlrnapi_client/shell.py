@@ -71,7 +71,7 @@ def repo_status(api_instance, options):
 
 
 def repo_promote(api_instance, options):
-    params = dlrnapi_client.Params4()  # Params4 | The JSON params to post
+    params = dlrnapi_client.Promotion()  # Promotion | The JSON params to post
     params.commit_hash = options.commit_hash
     params.distro_hash = options.distro_hash
     params.promote_name = options.promote_name

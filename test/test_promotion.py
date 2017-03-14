@@ -30,6 +30,9 @@ class TestPromotion(unittest.TestCase):
     def testPromotion(self):
         """Test Promotion """
         model = Promotion()
+        expected = {'promote_name': None, 'commit_hash': None,
+                    'distro_hash': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

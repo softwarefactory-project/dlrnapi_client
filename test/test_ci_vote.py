@@ -30,6 +30,10 @@ class TestCIVote(unittest.TestCase):
     def testCIVote(self):
         """Test CIVote """
         model = CIVote()
+        expected = {'job_id': None, 'success': None, 'url': None,
+                    'timestamp': None, 'notes': None, 'distro_hash': None,
+                    'commit_hash': None, 'in_progress': None}
+        self.assertEqual(model.to_dict(), expected)
 
 
 if __name__ == '__main__':

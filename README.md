@@ -79,13 +79,11 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [CIVote](docs/CIVote.md)
- - [InlineResponse201](docs/InlineResponse201.md)
+ - [Import](docs/ModelImport.md)
  - [Params](docs/Params.md)
  - [Params1](docs/Params1.md)
  - [Params2](docs/Params2.md)
  - [Params3](docs/Params3.md)
- - [Params4](docs/Params4.md)
- - [Params5](docs/Params5.md)
  - [Promotion](docs/Promotion.md)
  - [Repo](docs/Repo.md)
 
