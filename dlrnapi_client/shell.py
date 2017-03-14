@@ -101,12 +101,24 @@ def report_result(api_instance, options):
               " %s\n" % e)
 
 
+def import_commit(api_instance, options):
+    params = dlrnapi_client.ModelImport()  # ModelImport | JSON params to post
+    params.repo_url = options.repo_url
+
+    try:
+        api_response = api_instance.api_remote_import_post(params)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->api_remote_import_post:"
+              " %s\n" % e)
+
 command_funcs = {
     'repo-get': get_last_tested_repo,
     'repo-use': post_last_tested_repo,
     'repo-status': repo_status,
     'report-result': report_result,
     'repo-promote': repo_promote,
+    'commit-import': import_commit,
 }
 
 
@@ -218,6 +230,14 @@ def main():
                              help='distro_hash of the repo to be promoted')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
+
+    # Subcommand commit-import
+    parser_imp = subparsers.add_parser('commit-import',
+                                       help='Import a commit built by another'
+                                            ' instance')
+    parser_imp.add_argument('--repo-url', type=str, required=True,
+                            help='Base repository URL for the remote repo '
+                                 'to import')
 
     options, args = parser.parse_known_args(sys.argv[1:])
 
