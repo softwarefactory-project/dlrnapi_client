@@ -133,7 +133,9 @@ def main():
     parser.add_argument('--password', '-p',
                         help='password for authentication')
 
-    subparsers = parser.add_subparsers(dest='command')
+    subparsers = parser.add_subparsers(dest='command',
+                                       title='subcommands',
+                                       description='available subcommands')
     # Subcommand get-repo
     parser_last = subparsers.add_parser('repo-get',
                                         help='Get last tested repo')
