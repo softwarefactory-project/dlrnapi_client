@@ -28,7 +28,7 @@ subcommands:
     repo-promote        Promote a repository
     commit-import       Import a commit built by another instance
 ```
-The **url** parameter is mandatory in all cases. **userame** and **password**
+The **url** parameter is mandatory in all cases. **username** and **password**
 are required for the _repo-use_, _report-result_, _repo-promote_ and
 _commit-import_ subcommands.
 

@@ -31,10 +31,9 @@ def get_last_tested_repo(api_instance, options):
 
     try:
         api_response = api_instance.api_last_tested_repo_get(params)
-        pprint(api_response)
+        return api_response
     except ApiException as e:
-        print("Exception when calling DefaultApi->api_last_tested_repo_get:"
-              " %s\n" % e)
+        raise e
 
 
 def post_last_tested_repo(api_instance, options):
@@ -49,10 +48,9 @@ def post_last_tested_repo(api_instance, options):
 
     try:
         api_response = api_instance.api_last_tested_repo_post(params)
-        pprint(api_response)
+        return api_response
     except ApiException as e:
-        print("Exception when calling DefaultApi->api_last_tested_repo_post:"
-              " %s\n" % e)
+        raise e
 
 
 def repo_status(api_instance, options):
@@ -64,10 +62,9 @@ def repo_status(api_instance, options):
 
     try:
         api_response = api_instance.api_repo_status_get(params)
-        pprint(api_response)
+        return api_response
     except ApiException as e:
-        print("Exception when calling DefaultApi->api_repo_status_get:"
-              " %s\n" % e)
+        raise e
 
 
 def repo_promote(api_instance, options):
@@ -77,10 +74,9 @@ def repo_promote(api_instance, options):
     params.promote_name = options.promote_name
     try:
         api_response = api_instance.api_promote_post(params)
-        pprint(api_response)
+        return api_response
     except ApiException as e:
-        print("Exception when calling DefaultApi->api_promote_post:"
-              " %s\n" % e)
+        raise e
 
 
 def report_result(api_instance, options):
@@ -95,10 +91,9 @@ def report_result(api_instance, options):
 
     try:
         api_response = api_instance.api_report_result_post(params)
-        pprint(api_response)
+        return api_response
     except ApiException as e:
-        print("Exception when calling DefaultApi->api_report_result_post:"
-              " %s\n" % e)
+        raise e
 
 
 def import_commit(api_instance, options):
@@ -107,10 +102,10 @@ def import_commit(api_instance, options):
 
     try:
         api_response = api_instance.api_remote_import_post(params)
-        pprint(api_response)
+        return api_response
     except ApiException as e:
-        print("Exception when calling DefaultApi->api_remote_import_post:"
-              " %s\n" % e)
+        raise e
+
 
 command_funcs = {
     'repo-get': get_last_tested_repo,
@@ -249,4 +244,8 @@ def main():
     dlrnapi_client.configuration.password = options.password
     api_instance = dlrnapi_client.DefaultApi(api_client=api_client)
 
-    command_funcs[options.command](api_instance, options)
+    try:
+        api_response = command_funcs[options.command](api_instance, options)
+        pprint(api_response)
+    except Exception as e:
+        raise e
