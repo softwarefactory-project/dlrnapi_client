@@ -1,0 +1,4 @@
+[defaults]
+# Attempt to load dlrnapi_client Ansible module whether it's installed system-wide or from a virtual environment
+library = /usr/lib/python2.7/site-packages/dlrnapi_client/ansible:$VIRTUAL_ENV/lib/python2.7/site-packages/dlrnapi_client/ansible
+host_key_checking = False
