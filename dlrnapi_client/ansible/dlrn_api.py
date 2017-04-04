@@ -118,14 +118,14 @@ EXAMPLES = '''
 - dlrn_api:
     action: repo-get
     host: http://dlrn.example.com:5000
-    register: result
+  register: result
 
 # Get the last repo tested by any CI in the last 4 hours
 - dlrn_api:
     action: repo-get
     host: http://dlrn.example.com:5000
     max_age: 4
-    register: result
+  register: result
 
 # Get the last repo, successfully tested by the foo-ci CI, in the last 24 hours
 - dlrn_api:
@@ -134,7 +134,7 @@ EXAMPLES = '''
     max_age: 24
     job_id: foo-ci
     success: true
-    register: result
+  register: result
 
 # Get and start using the last repo, that failed testing by the foo-ci CI, in
 # the last 6 hours, and mark it as being used by the bar-ci CI
@@ -147,7 +147,7 @@ EXAMPLES = '''
     reporting_job_id: bar-ci
     job_id: foo-ci
     success: false
-    register: result
+  register: result
 
 # Get the CI reports for a specific commit
 - dlrn_api:
@@ -155,7 +155,7 @@ EXAMPLES = '''
     host: http://dlrn.example.com:5000
     commit_hash: 3a9326f251b9a4162eb0dfa9f1c924ef47c2c55a
     distro_hash: 024e24f0cf4366c2290c22f24e42de714d1addd1
-    register: result
+  register: result
 
 # Report result on a CI job ran by foo-ci
 - dlrn_api:
@@ -173,7 +173,7 @@ EXAMPLES = '''
 
 # Promote a repository
 - dlrn_api:
-    action: report-result
+    action: repo-promote
     host: http://dlrn.example.com:5000
     user: myuser
     password: mypasswd
@@ -206,6 +206,7 @@ class DLRNAPIWrapper(object):
         self.job_id = params.get('job_id')
         self.sequential = params.get('sequential_mode')
         self.previous_job_id = params.get('previous_job_id')
+        self.commit_hash = params.get('commit_hash')
         self.distro_hash = params.get('distro_hash')
         self.info_url = params.get('info_url')
         self.timestamp = params.get('timestamp')

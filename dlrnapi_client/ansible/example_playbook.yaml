@@ -1,0 +1,60 @@
+---
+- name: define API host
+  hosts: localhost
+  tasks:
+    - set_fact: api_host="http://192.168.122.1:5000"
+
+- name: get a repo to test
+  hosts: localhost
+  tasks:
+    - dlrn_api:
+        action: repo-use
+        host: "{{api_host}}"
+        user: foo
+        password: bar
+        reporting_job_id: test-ci
+      register: repo
+    - debug:
+        var: repo.result.commit_hash
+
+- name: get timestamp
+  hosts: localhost
+  tasks:
+    - shell: 'date +%s'
+      register: timestamp
+    - debug:
+        var: timestamp.stdout
+
+- name: report a result for the tested repo
+  hosts: localhost
+  tasks:
+    - dlrn_api:
+        action: report-result
+        host: "{{api_host}}"
+        user: foo
+        password: bar
+        job_id: test-ci
+        commit_hash: "{{repo.result.commit_hash}}"
+        distro_hash: "{{repo.result.distro_hash}}"
+        info_url: http://test.example.com/job_results/1
+        timestamp: "{{timestamp.stdout}}"
+        success: true
+        notes: 'Tested from ansible'
+      register: dlrnout
+    - debug:
+        var: dlrnout
+
+- name: promote the repo
+  hosts: localhost
+  tasks:
+    - dlrn_api:
+        action: repo-promote
+        host: "{{api_host}}"
+        user: foo
+        password: bar
+        commit_hash: "{{repo.result.commit_hash}}"
+        distro_hash: "{{repo.result.distro_hash}}"
+        promote_name: ansible-passed-ci
+      register: dlrnout
+    - debug:
+        var: dlrnout
