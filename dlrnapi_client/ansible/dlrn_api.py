@@ -286,7 +286,11 @@ def main():
 
     try:
         output = command_funcs[action](api_instance, options)
-        module.exit_json(changed=True, result=output.to_dict())
+        if type(output) == list:
+            output_f = [ x.to_dict() for x in output ]
+        else:
+            output_f = output.to_dict()
+        module.exit_json(changed=True, result=output_f)
     except ApiException as e:
         module.fail_json(msg="Exception when calling "
                              "%s: %s\n" % (command_funcs[action], e))
