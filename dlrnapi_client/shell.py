@@ -12,6 +12,7 @@
 
 from __future__ import print_function
 import argparse
+import os
 import sys
 
 from pprint import pprint
@@ -124,9 +125,15 @@ def main():
                         required=True,
                         help='URL to use')
     parser.add_argument('--username', '-u',
-                        help='username for authentication')
+                        help='username for authentication, defaults to '
+                             '"DLRNAPI_USERNAME" environment variable if set',
+                        default=os.getenv('DLRNAPI_USERNAME', None)
+                        )
     parser.add_argument('--password', '-p',
-                        help='password for authentication')
+                        help='password for authentication, defaults to '
+                             '"DLRNAPI_PASSWORD" environment variable is set',
+                        default=os.getenv('DLRNAPI_PASSWORD', None)
+                        )
 
     subparsers = parser.add_subparsers(dest='command',
                                        title='subcommands',
