@@ -15,10 +15,10 @@ from __future__ import absolute_import
 
 import unittest
 
-from dlrnapi_client.models.promotion import Promotion
+from dlrnapi_client.models.promotion_query import PromotionQuery
 
 
-class TestPromotion(unittest.TestCase):
+class TestPromotionQuery(unittest.TestCase):
     """Promotion unit test stubs """
 
     def setUp(self):
@@ -27,11 +27,11 @@ class TestPromotion(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPromotion(self):
-        """Test Promotion """
-        model = Promotion()
+    def testPromotionQuery(self):
+        """Test PromotionQuery """
+        model = PromotionQuery()
         expected = {'promote_name': None, 'commit_hash': None,
-                    'distro_hash': None, 'timestamp': None}
+                    'distro_hash': None, 'offset': None}
         self.assertEqual(model.to_dict(), expected)
 
 

@@ -32,7 +32,7 @@ options:
         description:
             - Action to take
         choices: [repo-get, repo-use, repo-status, report-result, repo-promote,
-                  commit-import]
+                  commit-import, promotion-get]
         required: true
     host:
         description:
@@ -83,6 +83,7 @@ options:
             - If action is report-result, commit_hash of tested repo.
             - If action is repo-promote, commit_hash of the repo to be
               promoted.
+            - If action is promotion-get, filter results for this commit hash.
     distro_hash:
         description:
             - If action is repo-status, distro_hash of the repo to fetch
@@ -90,6 +91,7 @@ options:
             - If action is report-result, distro_hash of tested repo.
             - If action is repo-promote, distro_hash of the repo to be
               promoted.
+            - If action is promotion-get, filter results for this distro hash.
     info_url:
         description:
             - If action is report-result, URL where to find additional
@@ -104,6 +106,8 @@ options:
     promote_name:
         description:
             - If action is repo-promote, name to be used for the promotion.
+            - If action is promotion-get, filter results by this promotion
+              name.
     repo_url:
         description:
             - If action is commit-import, base repository URL for imported
@@ -155,6 +159,13 @@ EXAMPLES = '''
     host: http://dlrn.example.com:5000
     commit_hash: 3a9326f251b9a4162eb0dfa9f1c924ef47c2c55a
     distro_hash: 024e24f0cf4366c2290c22f24e42de714d1addd1
+  register: result
+
+# Get the promotions for a specific job
+- dlrn_api:
+    action: promotion-get
+    host: http://dlrn.example.com:5000
+    promote_name: foo-ci
   register: result
 
 # Report result on a CI job ran by foo-ci
@@ -241,6 +252,11 @@ class DLRNAPIWrapper(object):
         elif action == 'commit-import':
             if self.repo_url is None:
                 module.fail_json(msg="Missing parameter repo_url")
+        elif action == 'promotion-get':
+            if (self.commit_hash is not None and self.distro_hash is None):
+                module.fail_json(msg="Missing parameter distro_hash")
+            if (self.distro_hash is not None and self.commit_hash is None):
+                module.fail_json(msg="Missing parameter commit_hash")
 
 
 def main():
@@ -248,8 +264,9 @@ def main():
         argument_spec=dict(
             action=dict(required=True, choices=['repo-get', 'repo-use',
                                                 'repo-status', 'report-result',
-                                                'repo-promote', 'commit-import'
-                                                ]),
+                                                'repo-promote',
+                                                'commit-import',
+                                                'promotion-get']),
             host=dict(required=True),
             user=dict(),
             password=dict(no_log=True),
@@ -287,7 +304,7 @@ def main():
     try:
         output = command_funcs[action](api_instance, options)
         if type(output) == list:
-            output_f = [ x.to_dict() for x in output ]
+            output_f = [x.to_dict() for x in output]
         else:
             output_f = output.to_dict()
         module.exit_json(changed=True, result=output_f)

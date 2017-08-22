@@ -80,6 +80,24 @@ def repo_promote(api_instance, options):
         raise e
 
 
+def get_promotions(api_instance, options):
+    params = dlrnapi_client.PromotionQuery()  # PromotionQuery
+    if options.commit_hash:
+        params.commit_hash = options.commit_hash
+    if options.distro_hash:
+        params.distro_hash = options.distro_hash
+    if options.promote_name:
+        params.promote_name = options.promote_name
+    if options.offset:
+        params.offset = options.offset
+
+    try:
+        api_response = api_instance.api_promotions_get(params)
+        return api_response
+    except ApiException as e:
+        raise e
+
+
 def report_result(api_instance, options):
     params = dlrnapi_client.Params3()  # Params3 | The JSON params to post
     params.job_id = options.job_id
@@ -115,6 +133,7 @@ command_funcs = {
     'report-result': report_result,
     'repo-promote': repo_promote,
     'commit-import': import_commit,
+    'promotion-get': get_promotions,
 }
 
 
@@ -234,6 +253,24 @@ def main():
                              help='distro_hash of the repo to be promoted')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
+
+    # Subcommand promotion-get
+    parser_promget = subparsers.add_parser('promotion-get',
+                                           help='Get information about '
+                                                'promotions')
+    parser_promget.add_argument('--commit-hash', type=str, required=False,
+                                help='commit_hash of the repo to search '
+                                     'promotions for. Requires --distro-hash '
+                                     'if specified.')
+    parser_promget.add_argument('--distro-hash', type=str, required=False,
+                                help='distro_hash of the repo to search '
+                                     'promotions for. Requires --commit-hash '
+                                     'if specified.')
+    parser_promget.add_argument('--promote-name', type=str, required=False,
+                                help='Filter results for this promotion name.')
+    parser_promget.add_argument('--offset', type=int, required=False,
+                                help='Show results after this offset. Each '
+                                     'query will only return 100 entries.')
 
     # Subcommand commit-import
     parser_imp = subparsers.add_parser('commit-import',
