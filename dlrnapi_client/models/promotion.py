@@ -20,7 +20,8 @@ class Promotion(object):
 
     Do not edit the class manually.
     """
-    def __init__(self, commit_hash=None, distro_hash=None, promote_name=None):
+    def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
+                 timestamp=None):
         """Promotion - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -31,18 +32,21 @@ class Promotion(object):
         self.swagger_types = {
             'commit_hash': 'str',
             'distro_hash': 'str',
-            'promote_name': 'str'
+            'promote_name': 'str',
+            'timestamp': 'int'
         }
 
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
-            'promote_name': 'promote_name'
+            'promote_name': 'promote_name',
+            'timestamp': 'timestamp'
         }
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
         self._promote_name = promote_name
+        self._timestamp = timestamp
 
     @property
     def commit_hash(self):
@@ -112,6 +116,29 @@ class Promotion(object):
         """
 
         self._promote_name = promote_name
+
+    @property
+    def timestamp(self):
+        """Gets the timestamp of this Repo.
+
+        Timestamp for this CI Vote (taken from the DLRN system time)
+
+        :return: The timestamp of this Repo.
+        :rtype: int
+        """
+        return self._timestamp
+
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        """Sets the timestamp of this Repo.
+
+        Timestamp for this CI Vote (taken from the DLRN system time)
+
+        :param timestamp: The timestamp of this Repo.
+        :type: int
+        """
+
+        self._timestamp = timestamp
 
     def to_dict(self):
         """Returns the model properties as a dict """

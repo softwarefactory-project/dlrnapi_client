@@ -197,6 +197,8 @@ class RESTClientObject(object):
                     request_body = None
                     if body:
                         request_body = json.dumps(body)
+                    else:
+                        request_body = '{}'
                     r = self.pool_manager.request(
                         method, url,
                         fields=query_params,

@@ -6,7 +6,8 @@ Method |HTTP request |Description
 ------------- | ------------- | -------------
 [**api_last_tested_repo_get**](DefaultApi.md#api_last_tested_repo_get) |**GET** /api/last_tested_repo |
 [**api_last_tested_repo_post**](DefaultApi.md#api_last_tested_repo_post)|**POST** /api/last_tested_repo |
-[**api_promote_post**](DefaultApi.md#api_promote_post)|**POST** /api/promote|
+[**api_promote_post**](DefaultApi.md#api_promote_post) | **POST** /api/promote | 
+[**api_promotions_get**](DefaultApi.md#api_promotions_get) | **GET** /api/promotions | 
 [**api_remote_import_post**](DefaultApi.md#api_remote_import_post) |**POST** /api/remote/import |
 [**api_repo_status_get**](DefaultApi.md#api_repo_status_get)|**GET** /api/repo_status |
 [**api_report_result_post**](DefaultApi.md#api_report_result_post)|**POST** /api/report_result|
@@ -186,6 +187,54 @@ Name | Type | Description  | Notes
 -   **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_promotions_get**
+> list[Promotion] api_promotions_get(params)
+
+
+
+Get all the promotions, optionally for a specific repository or promotion name. 
+
+### Example 
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+params = swagger_client.Params5() # Params5 | The JSON params to post
+
+try: 
+    api_response = api_instance.api_promotions_get(params)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->api_promotions_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **params** | [**Params5**](Params5.md)| The JSON params to post | 
+
+### Return type
+
+[**list[Promotion]**](Promotion.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 
 # **api_remote_import_post**
 > ModelImport api_remote_import_post(params=params)

@@ -70,6 +70,14 @@ class TestDefaultApi(unittest.TestCase):
         self.assertEqual(path, '/api/promote')
         self.assertEqual(method, 'POST')
 
+    def test_api_promotions_get(self):
+        """Test case for api_promotions_get """
+        default_api = DefaultApi(api_client=self.api_client)
+        params = dlrnapi_client.Promotion()
+        path, method = default_api.api_promotions_get(params)
+        self.assertEqual(path, '/api/promotions')
+        self.assertEqual(method, 'GET')
+
     def test_api_remote_import_post(self):
         """Test case for api_remote_import_post """
         default_api = DefaultApi(api_client=self.api_client)
