@@ -63,8 +63,8 @@ import dlrnapi_client
 from dlrnapi_client.rest import ApiException
 from pprint import pprint
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-params = swagger_client.Params() # Params | The JSON params to post
+api_instance = dlrnapi_client.DefaultApi()
+params = dlrnapi_client.Params() # Params | The JSON params to post
 
 try:
     api_response = api_instance.api_last_tested_repo_get(params)
