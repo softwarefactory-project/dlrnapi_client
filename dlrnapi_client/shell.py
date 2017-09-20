@@ -12,13 +12,22 @@
 
 from __future__ import print_function
 import argparse
+import json
 import os
 import sys
 
-from pprint import pprint
-
 import dlrnapi_client
 from dlrnapi_client.rest import ApiException
+
+
+# Helper class to allow us to convert API response objects into JSON for output
+class ResponseEncoder(json.JSONEncoder):
+    def default(self, obj):
+        # All the API response objects have a "swagger_types" attribute
+        if hasattr(obj, 'swagger_types'):
+            return obj.to_dict()
+        # Use the default encoder for anything else
+        return json.JSONEncoder.default(self, obj)
 
 
 def get_last_tested_repo(api_instance, options):
@@ -290,6 +299,7 @@ def main():
 
     try:
         api_response = command_funcs[options.command](api_instance, options)
-        pprint(api_response)
+        print(json.dumps(api_response, cls=ResponseEncoder, indent=2,
+                         sort_keys=True))
     except Exception as e:
         raise e
