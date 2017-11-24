@@ -40,7 +40,7 @@ class PromotionQuery(object):
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
             'promote_name': 'promote_name',
-            'offset': 'offset'
+            'offset': 'offset',
         }
 
         self._commit_hash = commit_hash

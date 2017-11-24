@@ -21,7 +21,7 @@ class Repo(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, success=None,
-                 job_id=None, in_progress=None, timestamp=None):
+                 job_id=None, in_progress=None, timestamp=None, user=None):
         """Repo - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -35,7 +35,8 @@ class Repo(object):
             'success': 'bool',
             'job_id': 'str',
             'in_progress': 'bool',
-            'timestamp': 'int'
+            'timestamp': 'int',
+            'user': 'str'
         }
 
         self.attribute_map = {
@@ -44,7 +45,8 @@ class Repo(object):
             'success': 'success',
             'job_id': 'job_id',
             'in_progress': 'in_progress',
-            'timestamp': 'timestamp'
+            'timestamp': 'timestamp',
+            'user': 'user'
         }
 
         self._commit_hash = commit_hash
@@ -53,6 +55,7 @@ class Repo(object):
         self._job_id = job_id
         self._in_progress = in_progress
         self._timestamp = timestamp
+        self._user = user
 
     @property
     def commit_hash(self):
@@ -191,6 +194,29 @@ class Repo(object):
         """
 
         self._timestamp = timestamp
+
+    @property
+    def user(self):
+        """Gets the user of this CIVote.
+
+        User who created the vote
+
+        :return: The user of this CIVote.
+        :rtype: str
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the notes of this CIVote.
+
+        User who created the vote
+
+        :param user: The user of this CIVote.
+        :type: str
+        """
+
+        self._user = user
 
     def to_dict(self):
         """Returns the model properties as a dict """
