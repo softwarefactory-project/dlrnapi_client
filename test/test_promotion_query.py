@@ -31,7 +31,7 @@ class TestPromotionQuery(unittest.TestCase):
         """Test PromotionQuery """
         model = PromotionQuery()
         expected = {'promote_name': None, 'commit_hash': None,
-                    'distro_hash': None, 'offset': None}
+                    'distro_hash': None, 'offset': None, 'user': None}
         self.assertEqual(model.to_dict(), expected)
 
 

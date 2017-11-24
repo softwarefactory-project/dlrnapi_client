@@ -21,7 +21,7 @@ class PromotionQuery(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 offset=None):
+                 offset=None, user=None):
         """PromotionQuery - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -34,19 +34,22 @@ class PromotionQuery(object):
             'distro_hash': 'str',
             'promote_name': 'str',
             'offset': 'int',
+            'user': 'str',
         }
 
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
             'promote_name': 'promote_name',
-            'offset': 'offset'
+            'offset': 'offset',
+            'user': 'user'
         }
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
         self._promote_name = promote_name
         self._offset = offset
+        self._user = user
 
     @property
     def commit_hash(self):
@@ -139,6 +142,29 @@ class PromotionQuery(object):
         """
 
         self._offset = offset
+
+    @property
+    def user(self):
+        """Gets the user of this Promotion Query.
+
+        User who created this promotion
+
+        :return: The user.
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this Promotion Query.
+
+        User who created this promotion
+
+        :param user: The user.
+        :type: int
+        """
+
+        self._user = user
 
     def to_dict(self):
         """Returns the model properties as a dict """

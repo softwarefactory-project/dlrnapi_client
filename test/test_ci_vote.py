@@ -32,7 +32,7 @@ class TestCIVote(unittest.TestCase):
         model = CIVote()
         expected = {'job_id': None, 'success': None, 'url': None,
                     'timestamp': None, 'notes': None, 'distro_hash': None,
-                    'commit_hash': None, 'in_progress': None}
+                    'commit_hash': None, 'in_progress': None, 'user': None}
         self.assertEqual(model.to_dict(), expected)
 
 

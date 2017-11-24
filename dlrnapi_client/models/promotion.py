@@ -21,7 +21,7 @@ class Promotion(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 timestamp=None):
+                 timestamp=None, user=None):
         """Promotion - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
