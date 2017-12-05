@@ -1,0 +1,13 @@
+---
+- project:
+    name: dlrnapi_client
+    check:
+      jobs:
+        - tox-pep8
+        - tox-py27
+        - dlrn-api-functional
+    gate:
+      jobs:
+        - tox-pep8
+        - tox-py27
+        - dlrn-api-functional
