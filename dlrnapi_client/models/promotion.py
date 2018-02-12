@@ -21,7 +21,7 @@ class Promotion(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 timestamp=None):
+                 timestamp=None, user=None):
         """Promotion - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -33,20 +33,23 @@ class Promotion(object):
             'commit_hash': 'str',
             'distro_hash': 'str',
             'promote_name': 'str',
-            'timestamp': 'int'
+            'timestamp': 'int',
+            'user': 'str'
         }
 
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
             'promote_name': 'promote_name',
-            'timestamp': 'timestamp'
+            'timestamp': 'timestamp',
+            'user': 'user'
         }
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
         self._promote_name = promote_name
         self._timestamp = timestamp
+        self._user = user
 
     @property
     def commit_hash(self):
@@ -139,6 +142,52 @@ class Promotion(object):
         """
 
         self._timestamp = timestamp
+
+    @property
+    def timestamp(self):
+        """Gets the timestamp of this Repo.
+
+        Timestamp for this CI Vote (taken from the DLRN system time)
+
+        :return: The timestamp of this Repo.
+        :rtype: int
+        """
+        return self._timestamp
+
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        """Sets the timestamp of this Repo.
+
+        Timestamp for this CI Vote (taken from the DLRN system time)
+
+        :param timestamp: The timestamp of this Repo.
+        :type: int
+        """
+
+        self._timestamp = timestamp
+
+    @property
+    def user(self):
+        """Gets the user of this Promotion Query.
+
+        User who created this promotion
+
+        :return: The user.
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this Promotion Query.
+
+        User who created this promotion
+
+        :param user: The user.
+        :type: int
+        """
+
+        self._user = user
 
     def to_dict(self):
         """Returns the model properties as a dict """
