@@ -1,0 +1,9 @@
+Code-Review+2: Haïkel Guémar <hguemar@fedoraproject.org>
+Code-Review+2: Alan Pevec <alan.pevec@redhat.com>
+Workflow+1: Javier Peña <jpena@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Mon, 12 Feb 2018 14:12:30 +0000
+Reviewed-on: https://softwarefactory-project.io/r/10374
+Project: dlrnapi_client
+Branch: refs/heads/master
