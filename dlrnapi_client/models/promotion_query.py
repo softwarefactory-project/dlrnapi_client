@@ -21,7 +21,7 @@ class PromotionQuery(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 offset=None):
+                 offset=None, limit=None):
         """PromotionQuery - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -34,19 +34,22 @@ class PromotionQuery(object):
             'distro_hash': 'str',
             'promote_name': 'str',
             'offset': 'int',
+            'limit': 'int',
         }
 
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
             'promote_name': 'promote_name',
-            'offset': 'offset'
+            'offset': 'offset',
+            'limit': 'limit',
         }
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
         self._promote_name = promote_name
         self._offset = offset
+        self._limit = limit
 
     @property
     def commit_hash(self):
@@ -139,6 +142,29 @@ class PromotionQuery(object):
         """
 
         self._offset = offset
+
+    @property
+    def limit(self):
+        """Gets the limit of this Promotion Query.
+
+        Limit to the first X promotions
+
+        :return: The limit used.
+        :rtype: int
+        """
+        return self._limit
+
+    @limit.setter
+    def limit(self, limit):
+        """Sets the limit of this Promotion Query.
+
+        Limit to the first X promotions
+
+        :param limit: The limit used
+        :type: int
+        """
+
+        self._limit = limit
 
     def to_dict(self):
         """Returns the model properties as a dict """

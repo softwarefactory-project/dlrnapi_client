@@ -99,6 +99,8 @@ def get_promotions(api_instance, options):
         params.promote_name = options.promote_name
     if options.offset:
         params.offset = options.offset
+    if options.limit:
+        params.limit = options.limit
 
     try:
         api_response = api_instance.api_promotions_get(params)
@@ -279,7 +281,11 @@ def main():
                                 help='Filter results for this promotion name.')
     parser_promget.add_argument('--offset', type=int, required=False,
                                 help='Show results after this offset. Each '
-                                     'query will only return 100 entries.')
+                                     'query will only return 100 entries by '
+                                     'default.')
+    parser_promget.add_argument('--limit', type=int, required=False,
+                                help='Limit the results to the first limit '
+                                     'items')
 
     # Subcommand commit-import
     parser_imp = subparsers.add_parser('commit-import',
