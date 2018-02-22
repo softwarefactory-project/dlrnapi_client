@@ -11,3 +11,6 @@
         - tox-pep8
         - tox-py27
         - dlrn-api-functional
+    release:
+      jobs:
+        - upload-pypi
