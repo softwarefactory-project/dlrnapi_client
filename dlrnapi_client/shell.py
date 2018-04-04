@@ -308,4 +308,10 @@ def main():
         print(json.dumps(api_response, cls=ResponseEncoder, indent=2,
                          sort_keys=True))
     except Exception as e:
-        raise e
+        # Handle 404 exceptions gracefully
+        if e.status == 404:
+            print("ERROR: Got error 404, probably endpoint %s is not available"
+                  % options.url)
+            return 1
+        else:
+            raise e
