@@ -15,6 +15,7 @@ from __future__ import absolute_import
 
 import logging
 import sys
+import os
 import urllib3
 
 from six import iteritems
@@ -76,7 +77,10 @@ class Configuration(object):
         # SSL/TLS verification
         # Set this to false to skip verifying SSL certificate when calling API
         # from https server.
-        self.verify_ssl = True
+        if os.environ.get('SSL_VERIFY') == '0':
+            self.verify_ssl = None
+        else:
+            self.verify_ssl = True
         # Set this to customize the certificate file to verify the peer.
         self.ssl_ca_cert = None
         # client certificate file
