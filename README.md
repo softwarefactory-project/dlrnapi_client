@@ -111,6 +111,9 @@ Class |Method |HTTP request |Description
 
 -   **Type**: HTTP basic authentication
 
+## Environment variables
+
+- *SSL_VERIFY*: set to '0' to deactivate SSL verification when talking to the DLRN API.
 
 ## Author
 
