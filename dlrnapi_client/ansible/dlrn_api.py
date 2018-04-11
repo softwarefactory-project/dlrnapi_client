@@ -32,7 +32,7 @@ options:
         description:
             - Action to take
         choices: [repo-get, repo-use, repo-status, report-result, repo-promote,
-                  commit-import, promotion-get]
+                  commit-import, promotion-get, build-metrics]
         required: true
     host:
         description:
@@ -112,6 +112,17 @@ options:
         description:
             - If action is commit-import, base repository URL for imported
               remote repo
+    start_date:
+        description:
+            - If action is build-metrics, start date to consider for the
+              metrics, in YYYY-mm-dd format.
+    end_date:
+        description:
+            - If action is build-metrics, end date to consider for the
+              metrics, in YYYY-mm-dd format.
+    package_name:
+        description:
+            - If action is build-metrics, filter results for this package.
 requirements:
     - "python >= 2.6"
     - "python-dlrnapi_client"
@@ -257,6 +268,11 @@ class DLRNAPIWrapper(object):
                 module.fail_json(msg="Missing parameter distro_hash")
             if (self.distro_hash is not None and self.commit_hash is None):
                 module.fail_json(msg="Missing parameter commit_hash")
+        elif action == 'build-metrics':
+            if self.start_date is None:
+                module.fail_json(msg="Missing start_date")
+            if self.end_date is None:
+                module.fail_json(msg="Missing end_date")
 
 
 def main():
@@ -266,7 +282,8 @@ def main():
                                                 'repo-status', 'report-result',
                                                 'repo-promote',
                                                 'commit-import',
-                                                'promotion-get']),
+                                                'promotion-get',
+                                                'build-metrics']),
             host=dict(required=True),
             user=dict(),
             password=dict(no_log=True),
@@ -283,6 +300,9 @@ def main():
             notes=dict(),
             promote_name=dict(),
             repo_url=dict(),
+            start_date=dict(),
+            end_date=dict(),
+            package_name=dict(),
         )
     )
 
