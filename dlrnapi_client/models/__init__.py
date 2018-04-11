@@ -15,6 +15,8 @@ from __future__ import absolute_import
 
 # import models into model package
 from dlrnapi_client.models.ci_vote import CIVote  # noqa
+from dlrnapi_client.models.metrics import Metrics  # noqa
+from dlrnapi_client.models.metrics import MetricsRequest  # noqa
 from dlrnapi_client.models.model_import import ModelImport  # noqa
 from dlrnapi_client.models.params import Params  # noqa
 from dlrnapi_client.models.params_1 import Params1  # noqa

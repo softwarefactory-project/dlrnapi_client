@@ -87,6 +87,7 @@ Class |Method |HTTP request |Description
 *DefaultApi*|[**api_last_tested_repo_post**](docs/DefaultApi.md#api_last_tested_repo_post)|**POST** /api/last_tested_repo|
 *DefaultApi*|[**api_promote_post**](docs/DefaultApi.md#api_promote_post)|**POST** /api/promote|
 *DefaultApi*|[**api_promotions_get**](docs/DefaultApi.md#api_promotions_get)|**POST** /api/promotions|
+*DefaultApi*|[**api_build_metrics_get**](docs/DefaultApi.md#api_build_metrics_get)|**GET** /api/metrics/builds|
 *DefaultApi*|[**api_remote_import_post**](docs/DefaultApi.md#api_remote_import_post)|**POST** /api/remote/import|
 *DefaultApi*|[**api_repo_status_get**](docs/DefaultApi.md#api_repo_status_get)|**GET** /api/repo_status|
 *DefaultApi*|[**api_report_result_post**](docs/DefaultApi.md#api_report_result_post)|**POST**/api/report_result|
