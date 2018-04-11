@@ -137,6 +137,21 @@ def import_commit(api_instance, options):
         raise e
 
 
+def get_metrics_builds(api_instance, options):
+    # MetricRequest | JSON params to post
+    params = dlrnapi_client.MetricsRequest()
+    params.start_date = options.start_date
+    params.end_date = options.end_date
+    if options.package_name:
+        params.package_name = options.package_name
+
+    try:
+        api_response = api_instance.api_build_metrics_get(params)
+        return api_response
+    except ApiException as e:
+        raise e
+
+
 command_funcs = {
     'repo-get': get_last_tested_repo,
     'repo-use': post_last_tested_repo,
@@ -145,6 +160,7 @@ command_funcs = {
     'repo-promote': repo_promote,
     'commit-import': import_commit,
     'promotion-get': get_promotions,
+    'build-metrics': get_metrics_builds,
 }
 
 
@@ -294,6 +310,20 @@ def main():
     parser_imp.add_argument('--repo-url', type=str, required=True,
                             help='Base repository URL for the remote repo '
                                  'to import')
+
+    # Subcommand build-metrics
+    parser_metrics = subparsers.add_parser(
+        'build-metrics',
+        help='Fetch build metrics in a time period')
+    parser_metrics.add_argument(
+        '--start-date', type=str, required=True,
+        help='Start date for the query, in YYYY-MM-DD format')
+    parser_metrics.add_argument(
+        '--end-date', type=str, required=True,
+        help='End date for the query, in YYYY-MM-DD format')
+    parser_metrics.add_argument(
+        '--package-name', type=str, required=False,
+        help='If specified, only fetch metrics for this package name')
 
     options, args = parser.parse_known_args(sys.argv[1:])
 
