@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a50d1a3_3f48635b",
+        "filename": "dlrnapi_client/apis/default_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "The initial client was automatically generated from the swagger definition, so this code is copied from other calls. I would keep it as-is for consistency.",
+      "parentUuid": "3a50d1a3_dc94ede9",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a50d1a3_5c021d40",
         "filename": "dlrnapi_client/apis/default_api.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-04-11T16:45:34Z",
       "side": 1,
       "message": "typo: et -\u003e Get",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_bf5b132e",
+        "filename": "dlrnapi_client/apis/default_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_5c021d40",
       "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3a50d1a3_5f41af38",
+        "filename": "dlrnapi_client/apis/default_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_fc99a920",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a50d1a3_bca3214f",
         "filename": "dlrnapi_client/shell.py",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2018-04-11T16:45:34Z",
       "side": 1,
       "message": "FYI to prevent these silly line breaks, you can use\n\nparser_metrics \u003d subparsers.add_parser(\n    \u0027build-metrics\u0027,\n     help\u003d\u0027Fetch build metrics in a time period\u0027)",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_9f6df7ce",
+        "filename": "dlrnapi_client/shell.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_bca3214f",
       "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "3a50d1a3_bf7233ac",
+        "filename": "docs/DefaultApi.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_5c89bdc9",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a50d1a3_7c86f9ba",
         "filename": "docs/DefaultApi.md",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2018-04-11T16:45:34Z",
       "side": 1,
       "message": "trailing whitespace",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_7f658bdf",
+        "filename": "docs/DefaultApi.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_7c86f9ba",
       "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "3a50d1a3_1f6247d9",
+        "filename": "docs/DefaultApi.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_1c9335fc",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a50d1a3_3c9071ec",
         "filename": "docs/MetricsRequest.md",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2018-04-11T16:45:34Z",
       "side": 1,
       "message": "trailing whitespace",
+      "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_3f5f0310",
+        "filename": "docs/MetricsRequest.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-12T09:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a50d1a3_3c9071ec",
       "revId": "d8eae34b660eed31d6446639bf07e424e03771b8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
