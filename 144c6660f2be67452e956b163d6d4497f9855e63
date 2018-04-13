@@ -16,6 +16,24 @@
       "revId": "144c6660f2be67452e956b163d6d4497f9855e63",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_e2e82219",
+        "filename": "dlrnapi_client/shell.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-04-13T08:30:26Z",
+      "side": 1,
+      "message": "With the current syntax... yes. Keeping it like this allows us to add some better processing in the future (and is consistent with the rest of the functions :)).",
+      "parentUuid": "3a50d1a3_2234cadc",
+      "revId": "144c6660f2be67452e956b163d6d4497f9855e63",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
     }
   ]
 }
