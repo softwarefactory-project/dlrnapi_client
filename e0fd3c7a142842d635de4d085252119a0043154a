@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a50d1a3_45e240a1",
+        "filename": "dlrnapi_client/configuration.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 421
+      },
+      "writtenOn": "2018-04-16T15:37:04Z",
+      "side": 1,
+      "message": "Above comment says \"Set this false to...\" and it indeed looks pretty boolean so I suggest setting it to False insted of None.",
+      "revId": "e0fd3c7a142842d635de4d085252119a0043154a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
