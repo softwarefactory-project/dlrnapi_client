@@ -114,6 +114,7 @@ Class |Method |HTTP request |Description
 
 ## Environment variables
 
+- *DLRNAPI_PASSWORD*: set the password to authenticate against the DLRN API.
 - *SSL_VERIFY*: set to '0' to deactivate SSL verification when talking to the DLRN API.
 
 ## Author
