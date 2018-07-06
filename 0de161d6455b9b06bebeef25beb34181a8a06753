@@ -1,0 +1,8 @@
+Code-Review+2: Javier Peña <jpena@redhat.com>
+Workflow+1: Javier Peña <jpena@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Fri, 06 Jul 2018 08:07:29 +0000
+Reviewed-on: https://softwarefactory-project.io/r/12902
+Project: dlrnapi_client
+Branch: refs/heads/master
