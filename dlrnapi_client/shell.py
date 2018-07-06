@@ -344,4 +344,4 @@ def main():
                   % options.url)
             return 1
         else:
-            raise e
+            raise
