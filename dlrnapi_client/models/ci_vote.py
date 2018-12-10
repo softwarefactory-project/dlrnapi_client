@@ -22,7 +22,7 @@ class CIVote(object):
     """
     def __init__(self, job_id=None, commit_hash=None, distro_hash=None,
                  url=None, timestamp=None, in_progress=None, success=None,
-                 notes=None):
+                 notes=None, metadata=None):
         """CIVote - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -39,6 +39,7 @@ class CIVote(object):
             'in_progress': 'bool',
             'success': 'bool',
             'notes': 'str'
+            'metadata': 'object',
         }
 
         self.attribute_map = {
@@ -50,6 +51,7 @@ class CIVote(object):
             'in_progress': 'in_progress',
             'success': 'success',
             'notes': 'notes'
+            'metadata': 'object',
         }
 
         self._job_id = job_id
@@ -60,6 +62,7 @@ class CIVote(object):
         self._in_progress = in_progress
         self._success = success
         self._notes = notes
+        self._metadata = metadata
 
     @property
     def job_id(self):
@@ -244,6 +247,29 @@ class CIVote(object):
         """
 
         self._notes = notes
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this Promotion.
+
+        metadata of promoted repo
+
+        :return: The metadata of this Promotion.
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this Promotion.
+
+        metadata of promoted repo
+
+        :param metadata: The metadata of this Promotion.
+        :type: object
+        """
+
+        self._metadata = metadata
 
     def to_dict(self):
         """Returns the model properties as a dict """

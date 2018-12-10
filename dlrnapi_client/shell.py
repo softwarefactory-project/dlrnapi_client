@@ -270,6 +270,8 @@ def main():
                             help='Was the CI execution successful?')
     parser_rep.add_argument('--notes', type=str,
                             help='Additional notes')
+    parser_rep.add_argument('--metadata', type=str, action='append',
+                            help='Additional metadata')
 
     # Subcommand promote
     parser_prom = subparsers.add_parser('repo-promote',
@@ -280,6 +282,8 @@ def main():
                              help='distro_hash of the repo to be promoted')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
+    parser_rep.add_argument('--metadata', type=str, action='append',
+                            help='Additional metadata')
 
     # Subcommand promotion-get
     parser_promget = subparsers.add_parser('promotion-get',
@@ -326,6 +330,16 @@ def main():
         help='If specified, only fetch metrics for this package name')
 
     options, args = parser.parse_known_args(sys.argv[1:])
+
+    # To avoid passing JSON string to the --metadata parameter We allow
+    # passing --metadata multiple times, specifying a single key=value string
+    # each time Then we transform this list into a dict
+    if options.metadata is not None:
+        metadata_dict = {}
+        for keypair in options.metadata:
+            key, value = keypair.split('=')
+            metadata_dict[key] = value
+        options.metadata = metadata_dict
 
     # create an instance of the API class
     api_client = dlrnapi_client.ApiClient(host=options.url)

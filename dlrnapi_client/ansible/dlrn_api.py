@@ -123,6 +123,9 @@ options:
     package_name:
         description:
             - If action is build-metrics, filter results for this package.
+    metadata:
+        description:
+            - if action is report-result or repo-promote, add metadata info.
 requirements:
     - "python >= 2.6"
     - "python-dlrnapi_client"
@@ -202,6 +205,8 @@ EXAMPLES = '''
     commit_hash: 3a9326f251b9a4162eb0dfa9f1c924ef47c2c55a
     distro_hash: 024e24f0cf4366c2290c22f24e42de714d1addd1
     promote_name: current-passed-ci
+    metadata:
+        key: value
 
 # Import a remote commit
 - dlrn_api:
@@ -235,6 +240,7 @@ class DLRNAPIWrapper(object):
         self.notes = params.get('notes')
         self.promote_name = params.get('promote_name')
         self.repo_url = params.get('repo_url')
+        self.metadata = params.get('metadata')
 
     def check_options(self, action, module):
         if action == 'repo-use':

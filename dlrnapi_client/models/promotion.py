@@ -21,7 +21,8 @@ class Promotion(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 timestamp=None, user=None, repo_hash=None, repo_url=None):
+                 timestamp=None, user=None, repo_hash=None, repo_url=None,
+                 metadata=None):
         """Promotion - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -37,6 +38,7 @@ class Promotion(object):
             'user': 'str',
             'repo_hash': 'str',
             'repo_url': 'str',
+            'metadata': 'object',
         }
 
         self.attribute_map = {
@@ -47,6 +49,7 @@ class Promotion(object):
             'user': 'user',
             'repo_hash': 'repo_hash',
             'repo_url': 'repo_url',
+            'metedata': 'metadata',
         }
 
         self._commit_hash = commit_hash
@@ -56,6 +59,7 @@ class Promotion(object):
         self._user = user
         self._repo_hash = repo_hash
         self._repo_url = repo_url
+        self._metadata = metadata
 
     @property
     def commit_hash(self):
@@ -240,6 +244,29 @@ class Promotion(object):
         """
 
         self._repo_url = repo_url
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this Promotion.
+
+        metadata of promoted repo
+
+        :return: The metadata of this Promotion.
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this Promotion.
+
+        metadata of promoted repo
+
+        :param metadata: The metadata of this Promotion.
+        :type: object
+        """
+
+        self._metadata = metadata
 
     def to_dict(self):
         """Returns the model properties as a dict """
