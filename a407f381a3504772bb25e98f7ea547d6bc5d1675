@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca2de913_69d38577",
+        "filename": "dlrnapi_client/ansible/dlrn_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-12-10T14:09:31Z",
+      "side": 1,
+      "message": "This should only be for repo-promote. We have the \"notes\" field for report-result.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 76
+      },
+      "revId": "a407f381a3504772bb25e98f7ea547d6bc5d1675",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51831c8c_f9bc6f8d",
+        "filename": "dlrnapi_client/models/ci_vote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-12-10T14:09:31Z",
+      "side": 1,
+      "message": "Let\u0027s not add it here, we have the notes field for that.",
+      "range": {
+        "startLine": 25,
+        "startChar": 28,
+        "endLine": 25,
+        "endChar": 43
+      },
+      "revId": "a407f381a3504772bb25e98f7ea547d6bc5d1675",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b77faf7d_f3b6e018",
+        "filename": "dlrnapi_client/models/promotion.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-12-10T14:09:31Z",
+      "side": 1,
+      "message": "This should be str, not an object.",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "a407f381a3504772bb25e98f7ea547d6bc5d1675",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27425230_5f8bdc7e",
+        "filename": "dlrnapi_client/shell.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-12-10T14:09:31Z",
+      "side": 1,
+      "message": "Same here, not needed for CI votes",
+      "range": {
+        "startLine": 273,
+        "startChar": 3,
+        "endLine": 273,
+        "endChar": 68
+      },
+      "revId": "a407f381a3504772bb25e98f7ea547d6bc5d1675",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5564daf3_d1ef752c",
+        "filename": "dlrnapi_client/shell.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2018-12-10T14:09:31Z",
+      "side": 1,
+      "message": "We have not created the server-side part yet, but it\u0027s probably going to be easier to send and parse a string-ified version of the dict, rather than the dict itself.",
+      "revId": "a407f381a3504772bb25e98f7ea547d6bc5d1675",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
