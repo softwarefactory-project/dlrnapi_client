@@ -82,6 +82,7 @@ def repo_promote(api_instance, options):
     params.commit_hash = options.commit_hash
     params.distro_hash = options.distro_hash
     params.promote_name = options.promote_name
+    params.notes = options.notes
     try:
         api_response = api_instance.api_promote_post(params)
         return api_response
@@ -280,6 +281,8 @@ def main():
                              help='distro_hash of the repo to be promoted')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
+    parser_rep.add_argument('--notes', type=str,
+                            help='Additional notes')
 
     # Subcommand promotion-get
     parser_promget = subparsers.add_parser('promotion-get',
