@@ -1,0 +1,9 @@
+Code-Review+1: Tristan de Cacqueray <tdecacqu@redhat.com>
+Code-Review+2: Javier Peña <jpena@redhat.com>
+Workflow+1: Javier Peña <jpena@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Tue, 29 Jan 2019 12:09:31 +0000
+Reviewed-on: https://softwarefactory-project.io/r/14573
+Project: dlrnapi_client
+Branch: refs/heads/master
