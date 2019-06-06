@@ -119,7 +119,10 @@ class DefaultApi(object):
 
         body_params = None
         if 'params' in params:
+            # FIXME(jpena): we should deprecate in-body params in the future
             body_params = params['params']
+            # Use in-URL params, too
+            query_params = params['params']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])
@@ -620,7 +623,10 @@ class DefaultApi(object):
 
         body_params = None
         if 'params' in params:
+            # FIXME(jpena): we should deprecate in-body params in the future
             body_params = params['params']
+            # Use in-URL params, too
+            query_params = params['params']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])
@@ -843,7 +849,10 @@ class DefaultApi(object):
 
         body_params = None
         if 'params' in params:
+            # FIXME(jpena): we should deprecate in-body params in the future
             body_params = params['params']
+            # Use in-URL params, too
+            query_params = params['params']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])
@@ -954,7 +963,10 @@ class DefaultApi(object):
 
         body_params = None
         if 'params' in params:
+            # FIXME(jpena): we should deprecate in-body params in the future
             body_params = params['params']
+            # Use in-URL params, too
+            query_params = params['params']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])

@@ -346,4 +346,4 @@ def main():
         else:
             raise
     except Exception as e:
-        raise
+        raise e
