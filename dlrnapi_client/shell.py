@@ -101,6 +101,8 @@ def get_promotions(api_instance, options):
         params.offset = options.offset
     if options.limit:
         params.limit = options.limit
+    if options.component:
+        params.component = options.component
 
     try:
         api_response = api_instance.api_promotions_get(params)
@@ -304,6 +306,9 @@ def main():
     parser_promget.add_argument('--limit', type=int, required=False,
                                 help='Limit the results to the first limit '
                                      'items')
+    parser_promget.add_argument('--component', type=str, required=False,
+                                help='Only search for promotions related to '
+                                     'this component.')
 
     # Subcommand commit-import
     parser_imp = subparsers.add_parser('commit-import',

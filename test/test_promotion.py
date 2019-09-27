@@ -32,7 +32,7 @@ class TestPromotion(unittest.TestCase):
         model = Promotion()
         expected = {'promote_name': None, 'commit_hash': None,
                     'distro_hash': None, 'timestamp': None, 'user': None,
-                    'repo_hash': None, 'repo_url': None}
+                    'repo_hash': None, 'repo_url': None, 'component': None}
         self.assertEqual(model.to_dict(), expected)
 
 
