@@ -21,7 +21,7 @@ class PromotionQuery(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 offset=None, limit=None):
+                 offset=None, limit=None, component=None):
         """PromotionQuery - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -35,6 +35,7 @@ class PromotionQuery(object):
             'promote_name': 'str',
             'offset': 'int',
             'limit': 'int',
+            'component': 'str',
         }
 
         self.attribute_map = {
@@ -43,6 +44,7 @@ class PromotionQuery(object):
             'promote_name': 'promote_name',
             'offset': 'offset',
             'limit': 'limit',
+            'component': 'component',
         }
 
         self._commit_hash = commit_hash
@@ -50,6 +52,7 @@ class PromotionQuery(object):
         self._promote_name = promote_name
         self._offset = offset
         self._limit = limit
+        self._component = component
 
     @property
     def commit_hash(self):
@@ -165,6 +168,29 @@ class PromotionQuery(object):
         """
 
         self._limit = limit
+
+    @property
+    def component(self):
+        """Gets the component of this Promotion Query.
+
+        Limit to the query to promotions for this component
+
+        :return: The component used.
+        :rtype: string
+        """
+        return self._component
+
+    @component.setter
+    def component(self, component):
+        """Sets the component of this Promotion Query.
+
+        Limit to the query to promotions for this component
+
+        :param component: The component used
+        :type: string
+        """
+
+        self._component = component
 
     def to_dict(self):
         """Returns the model properties as a dict """

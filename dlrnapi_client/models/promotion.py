@@ -21,7 +21,8 @@ class Promotion(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 timestamp=None, user=None, repo_hash=None, repo_url=None):
+                 timestamp=None, user=None, repo_hash=None, repo_url=None,
+                 component=None):
         """Promotion - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -37,6 +38,7 @@ class Promotion(object):
             'user': 'str',
             'repo_hash': 'str',
             'repo_url': 'str',
+            'component': 'str',
         }
 
         self.attribute_map = {
@@ -47,6 +49,7 @@ class Promotion(object):
             'user': 'user',
             'repo_hash': 'repo_hash',
             'repo_url': 'repo_url',
+            'component': 'component',
         }
 
         self._commit_hash = commit_hash
@@ -56,6 +59,7 @@ class Promotion(object):
         self._user = user
         self._repo_hash = repo_hash
         self._repo_url = repo_url
+        self._component = component
 
     @property
     def commit_hash(self):
@@ -240,6 +244,29 @@ class Promotion(object):
         """
 
         self._repo_url = repo_url
+
+    @property
+    def component(self):
+        """Gets the component of this Promotion.
+
+        component of promoted repo
+
+        :return: The component of this Promotion.
+        :rtype: str
+        """
+        return self._component
+
+    @component.setter
+    def component(self, component):
+        """Sets the component of this Promotion.
+
+        component of promoted repo
+
+        :param component: The component of this Promotion.
+        :type: str
+        """
+
+        self._component = component
 
     def to_dict(self):
         """Returns the model properties as a dict """
