@@ -21,7 +21,8 @@ class Repo(object):
     Do not edit the class manually.
     """
     def __init__(self, commit_hash=None, distro_hash=None, success=None,
-                 job_id=None, in_progress=None, timestamp=None, user=None):
+                 job_id=None, in_progress=None, timestamp=None, user=None,
+                 component=None):
         """Repo - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -36,7 +37,8 @@ class Repo(object):
             'job_id': 'str',
             'in_progress': 'bool',
             'timestamp': 'int',
-            'user': 'str'
+            'user': 'str',
+            'component': 'str'
         }
 
         self.attribute_map = {
@@ -46,7 +48,8 @@ class Repo(object):
             'job_id': 'job_id',
             'in_progress': 'in_progress',
             'timestamp': 'timestamp',
-            'user': 'user'
+            'user': 'user',
+            'component': 'component'
         }
 
         self._commit_hash = commit_hash
@@ -56,6 +59,7 @@ class Repo(object):
         self._in_progress = in_progress
         self._timestamp = timestamp
         self._user = user
+        self._component = component
 
     @property
     def commit_hash(self):
@@ -197,26 +201,49 @@ class Repo(object):
 
     @property
     def user(self):
-        """Gets the user of this CIVote.
+        """Gets the user of this Repo.
 
         User who created the vote
 
-        :return: The user of this CIVote.
+        :return: The user of this Repo.
         :rtype: str
         """
         return self._user
 
     @user.setter
     def user(self, user):
-        """Sets the notes of this CIVote.
+        """Sets the notes of this Repo.
 
         User who created the vote
 
-        :param user: The user of this CIVote.
+        :param user: The user of this Repo.
         :type: str
         """
 
         self._user = user
+
+    @property
+    def component(self):
+        """Gets the component of this Repo.
+
+        additional notes
+
+        :return: The component of this Repo.
+        :rtype: str
+        """
+        return self._component
+
+    @component.setter
+    def component(self, component):
+        """Sets the component of this Repo.
+
+        additional notes
+
+        :param component: The component of this Repo.
+        :type: str
+        """
+
+        self._component = component
 
     def to_dict(self):
         """Returns the model properties as a dict """

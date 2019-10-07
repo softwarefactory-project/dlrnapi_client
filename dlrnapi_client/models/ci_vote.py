@@ -22,7 +22,7 @@ class CIVote(object):
     """
     def __init__(self, job_id=None, commit_hash=None, distro_hash=None,
                  url=None, timestamp=None, in_progress=None, success=None,
-                 notes=None):
+                 notes=None, component=None):
         """CIVote - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -38,7 +38,8 @@ class CIVote(object):
             'timestamp': 'int',
             'in_progress': 'bool',
             'success': 'bool',
-            'notes': 'str'
+            'notes': 'str',
+            'component': 'str'
         }
 
         self.attribute_map = {
@@ -49,7 +50,8 @@ class CIVote(object):
             'timestamp': 'timestamp',
             'in_progress': 'in_progress',
             'success': 'success',
-            'notes': 'notes'
+            'notes': 'notes',
+            'component': 'component'
         }
 
         self._job_id = job_id
@@ -60,6 +62,7 @@ class CIVote(object):
         self._in_progress = in_progress
         self._success = success
         self._notes = notes
+        self._component = component
 
     @property
     def job_id(self):
@@ -244,6 +247,29 @@ class CIVote(object):
         """
 
         self._notes = notes
+
+    @property
+    def component(self):
+        """Gets the component of this CIVote.
+
+        additional notes
+
+        :return: The component of this CIVote.
+        :rtype: str
+        """
+        return self._component
+
+    @component.setter
+    def component(self, component):
+        """Sets the component of this CIVote.
+
+        additional notes
+
+        :param component: The component of this CIVote.
+        :type: str
+        """
+
+        self._component = component
 
     def to_dict(self):
         """Returns the model properties as a dict """

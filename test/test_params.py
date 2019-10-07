@@ -31,7 +31,8 @@ class TestParams(unittest.TestCase):
         """Test Params """
         model = Params()
         expected = {'max_age': None, 'sequential_mode': None, 'job_id': None,
-                    'success': None, 'previous_job_id': None}
+                    'success': None, 'previous_job_id': None,
+                    'component': None}
         self.assertEqual(model.to_dict(), expected)
 
 
