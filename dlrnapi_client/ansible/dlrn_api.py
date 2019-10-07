@@ -123,6 +123,10 @@ options:
     package_name:
         description:
             - If action is build-metrics, filter results for this package.
+    component:
+        description:
+            - If action is repo-get, repo-use or promotion-get, filter on
+              this component.
 requirements:
     - "python >= 2.6"
     - "python-dlrnapi_client"
@@ -235,6 +239,7 @@ class DLRNAPIWrapper(object):
         self.notes = params.get('notes')
         self.promote_name = params.get('promote_name')
         self.repo_url = params.get('repo_url')
+        self.component = params.get('component')
 
     def check_options(self, action, module):
         if action == 'repo-use':
@@ -303,6 +308,7 @@ def main():
             start_date=dict(),
             end_date=dict(),
             package_name=dict(),
+            component=dict()
         )
     )
 

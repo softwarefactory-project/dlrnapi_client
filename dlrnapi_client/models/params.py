@@ -21,7 +21,7 @@ class Params(object):
     Do not edit the class manually.
     """
     def __init__(self, max_age=None, success=None, job_id=None,
-                 sequential_mode=None, previous_job_id=None):
+                 sequential_mode=None, previous_job_id=None, component=None):
         """Params - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -34,7 +34,8 @@ class Params(object):
             'success': 'bool',
             'job_id': 'str',
             'sequential_mode': 'bool',
-            'previous_job_id': 'str'
+            'previous_job_id': 'str',
+            'component': 'str'
         }
 
         self.attribute_map = {
@@ -42,7 +43,8 @@ class Params(object):
             'success': 'success',
             'job_id': 'job_id',
             'sequential_mode': 'sequential_mode',
-            'previous_job_id': 'previous_job_id'
+            'previous_job_id': 'previous_job_id',
+            'component': 'component'
         }
 
         self._max_age = max_age
@@ -50,6 +52,7 @@ class Params(object):
         self._job_id = job_id
         self._sequential_mode = sequential_mode
         self._previous_job_id = previous_job_id
+        self._component = component
 
     @property
     def max_age(self):
@@ -184,6 +187,29 @@ class Params(object):
         """
 
         self._previous_job_id = previous_job_id
+
+    @property
+    def component(self):
+        """Gets the component of this Params.
+
+        additional notes
+
+        :return: The component of this Params.
+        :rtype: str
+        """
+        return self._component
+
+    @component.setter
+    def component(self, component):
+        """Sets the component of this Params.
+
+        additional notes
+
+        :param component: The component of this Params.
+        :type: str
+        """
+
+        self._component = component
 
     def to_dict(self):
         """Returns the model properties as a dict """

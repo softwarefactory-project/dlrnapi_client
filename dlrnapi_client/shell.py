@@ -35,6 +35,8 @@ def get_last_tested_repo(api_instance, options):
     params.max_age = options.max_age
     if options.success:
         params.success = str(options.success)
+    if options.component:
+        params.component = str(options.component)
     params.job_id = options.job_id
     params.sequential_mode = str(options.sequential)
     params.previous_job_id = options.previous_job_id
@@ -52,6 +54,8 @@ def post_last_tested_repo(api_instance, options):
     params.reporting_job_id = options.reporting_job_id
     if options.success:
         params.success = str(options.success)
+    if options.component:
+        params.component = str(options.component)
     params.job_id = options.job_id
     params.sequential_mode = str(options.sequential)
     params.previous_job_id = options.previous_job_id
@@ -186,7 +190,7 @@ def main():
     subparsers = parser.add_subparsers(dest='command',
                                        title='subcommands',
                                        description='available subcommands')
-    # Subcommand get-repo
+    # Subcommand repo-get
     parser_last = subparsers.add_parser('repo-get',
                                         help='Get last tested repo')
     parser_last.add_argument('--max-age', type=int, default=0,
@@ -208,8 +212,12 @@ def main():
     parser_last.add_argument('--previous-job-id', type=str, default=None,
                              help='If --sequential-mode is set, look for jobs'
                                   ' tested by this CI')
+    parser_last.add_argument('--component', type=str, default=None,
+                             required=False,
+                             help='Only search for repos related to '
+                                  'this component.')
 
-    # Subcommand use-repo
+    # Subcommand repo-use
     parser_use_last = subparsers.add_parser('repo-use',
                                             help='Get the last tested repo '
                                                  'since a specific time '
@@ -238,6 +246,10 @@ def main():
     parser_use_last.add_argument('--previous-job-id', type=str, default=None,
                                  help='If --sequential-mode is true, look for '
                                       'jobs tested by this CI')
+    parser_use_last.add_argument('--component', type=str, default=None,
+                                 required=False,
+                                 help='Only search for repos related to '
+                                      'this component.')
 
     # Subcommand repo-status
     parser_st = subparsers.add_parser('repo-status',

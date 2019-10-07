@@ -32,7 +32,7 @@ class TestRepo(unittest.TestCase):
         model = Repo()
         expected = {'job_id': None, 'success': None, 'timestamp': None,
                     'distro_hash': None, 'commit_hash': None,
-                    'in_progress': None, 'user': None}
+                    'in_progress': None, 'user': None, 'component': None}
         self.assertEqual(model.to_dict(), expected)
 
 
