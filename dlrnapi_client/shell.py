@@ -191,7 +191,7 @@ def main():
                              help='max_age')
     parser_last.add_argument('--success', type=str, default=None,
                              help='Find repos with a successful/unsuccessful '
-                                  'vote, if specified')
+                                  'vote, if true or false are specified')
     parser_last.add_argument('--job-id', type=str, default=None,
                              help='Name of the CI that sent the vote. If not '
                                   'set, no filter will be set on CI')
@@ -222,7 +222,8 @@ def main():
                                       'progress" entry in the CI job table.')
     parser_use_last.add_argument('--success', type=str, default=None,
                                  help='Find repos with a successful/'
-                                      'unsuccessful vote, if specified')
+                                      'unsuccessful vote, if true or false '
+                                      'are specified')
     parser_use_last.add_argument('--job-id', type=str, default=None,
                                  help='Name of the CI that sent the vote. If '
                                       'not set, no filter will be set on CI')
@@ -248,9 +249,9 @@ def main():
                            help='distro_hash of the repo to fetch '
                                 'information for.')
     parser_st.add_argument('--success', type=str, default=None,
-                           help='If set to a value, only return the CI '
-                                'reports with the specified vote. If not'
-                                ' set, return all CI reports.')
+                           help='If set to a value (true/false), only return '
+                                'the CI reports with the specified vote. If '
+                                'not set, return all CI reports.')
 
     # Subcommand report-result
     parser_rep = subparsers.add_parser('report-result',
@@ -267,7 +268,8 @@ def main():
     parser_rep.add_argument('--timestamp', type=str, required=True,
                             help='Timestamp (in seconds since the epoch)')
     parser_rep.add_argument('--success', type=str, required=True,
-                            help='Was the CI execution successful?')
+                            help='Was the CI execution successful? Set to '
+                                 'true or false.')
     parser_rep.add_argument('--notes', type=str,
                             help='Additional notes')
 
