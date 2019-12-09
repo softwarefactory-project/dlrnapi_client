@@ -2,15 +2,16 @@
 - project:
     name: dlrnapi_client
     check:
-      jobs:
+      jobs: &jobs
         - tox-pep8
         - tox-py27
+        - tox-py36:
+            nodeset: centos-8-runc
+        - tox-py37:
+            nodeset: fedora-latest-pod
         - dlrn-api-functional
     gate:
-      jobs:
-        - tox-pep8
-        - tox-py27
-        - dlrn-api-functional
+      jobs: *jobs
     release:
       jobs:
         - upload-pypi
