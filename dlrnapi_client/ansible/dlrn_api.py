@@ -15,9 +15,20 @@
 #
 
 from ansible.module_utils.basic import AnsibleModule
-import dlrnapi_client
-from dlrnapi_client.rest import ApiException
-from dlrnapi_client.shell import command_funcs
+try:
+    import dlrnapi_client
+    from dlrnapi_client.rest import ApiException
+    from dlrnapi_client.shell import command_funcs
+# auto-install code for ansible collection deployment
+except ImportError:
+    import pip
+    if hasattr(pip, 'main'):
+        pip.main(['install', 'dlrnapi-client'])
+    else:
+        pip._internal.main(['install', 'dlrnapi-client'])
+    import dlrnapi_client
+    from dlrnapi_client.rest import ApiException
+    from dlrnapi_client.shell import command_funcs
 
 DOCUMENTATION = '''
 ---

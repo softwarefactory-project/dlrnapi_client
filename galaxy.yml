@@ -1,0 +1,24 @@
+namespace: ssbarnea
+name: dlrn
+version: 0.0.1
+readme: README.md
+
+# A list of the collection's content authors. Can be just the name or in the format 'Full Name <email> (url)
+# @nicks:irc/im.site#channel'
+authors:
+- Sorin Sbarnea <ssbarnea@redhat.com>
+
+description: DLRN API Ansible Collection
+license_file: LICENSE
+tags: []
+
+# Collections that this collection requires to be installed for it to be usable. The key of the dict is the
+# collection label 'namespace.name'. The value is a version range
+# L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
+# range specifiers can be set and are separated by ','
+dependencies: {}
+
+repository: https://github.com/softwarefactory-project/dlrnapi_client
+documentation: https://github.com/softwarefactory-project/dlrnapi_client
+homepage: https://github.com/softwarefactory-project/dlrnapi_client
+issues: https://github.com/softwarefactory-project/dlrnapi_client/issues
