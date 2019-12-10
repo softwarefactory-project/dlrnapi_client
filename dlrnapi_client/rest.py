@@ -23,6 +23,7 @@ import ssl
 
 # python 2 and python 3 compatibility library
 from six.moves.urllib.parse import urlencode
+from six import integer_types
 from six import PY3
 
 from dlrnapi_client.configuration import Configuration
@@ -128,7 +129,7 @@ class RESTClientObject(object):
 
         timeout = None
         if _request_timeout:
-            if isinstance(_request_timeout, (int, ) if PY3 else (int, long)):
+            if isinstance(_request_timeout, integer_types):
                 timeout = urllib3.Timeout(total=_request_timeout)
             elif (isinstance(_request_timeout, tuple) and
                   len(_request_timeout) == 2):
