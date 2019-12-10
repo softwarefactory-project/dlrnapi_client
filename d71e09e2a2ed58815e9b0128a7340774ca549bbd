@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ee5aeac9_076c955d",
+        "filename": "test/test_ansible_module.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2019-12-10T18:22:46Z",
+      "side": 1,
+      "message": "I guess we can remove this commented-out line.",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "d71e09e2a2ed58815e9b0128a7340774ca549bbd",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "015c979d_ed3e9265",
         "filename": "test/test_ansible_module.py",
         "patchSetId": 2
