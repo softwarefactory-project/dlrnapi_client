@@ -6,3 +6,4 @@ pytest-cov
 pytest-html
 randomize>=0.13
 flake8
+ansible>=2.8  # We want to be sure it works with this version of ansible
