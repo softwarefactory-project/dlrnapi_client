@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a77a8c8e_c2a8686b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 450
+      },
+      "writtenOn": "2019-12-10T15:02:54Z",
+      "side": 1,
+      "message": "Example https://softwarefactory-project.io/logs/76/17176/1/check/tox-py27/b5fd7e2/tox/reports.html",
+      "range": {
+        "startLine": 11,
+        "startChar": 10,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "559ff74397cb2a1aac43767f8059500d3c9e6d15",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
