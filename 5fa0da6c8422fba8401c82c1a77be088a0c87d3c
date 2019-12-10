@@ -1,0 +1,9 @@
+Code-Review+1: Rafael Folco <rafaelfolco@gmail.com>
+Code-Review+2: Javier Peña <jpena@redhat.com>
+Workflow+1: Javier Peña <jpena@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Tue, 10 Dec 2019 12:14:38 +0000
+Reviewed-on: https://softwarefactory-project.io/r/17161
+Project: dlrnapi_client
+Branch: refs/heads/master
