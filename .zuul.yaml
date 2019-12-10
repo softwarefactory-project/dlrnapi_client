@@ -9,7 +9,8 @@
             nodeset: centos-8-cloud
         - tox-py37:
             nodeset: fedora-latest-pod
-        - dlrn-api-functional
+        - dlrn-api-functional-centos-7
+        - dlrn-api-functional-centos-8
     gate:
       jobs: *jobs
     release:
