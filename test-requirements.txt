@@ -1,6 +1,8 @@
-coverage>=4.0.3
-nose>=1.3.7
+ansi2html
 pluggy>=0.3.1
 py>=1.4.31
+pytest>=4.6.7
+pytest-cov
+pytest-html
 randomize>=0.13
 flake8
