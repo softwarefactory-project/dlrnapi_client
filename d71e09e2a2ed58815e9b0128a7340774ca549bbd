@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8cf9a302_55e3549a",
+        "filename": "test/test_ansible_module.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 450
+      },
+      "writtenOn": "2019-12-10T18:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee5aeac9_076c955d",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "d71e09e2a2ed58815e9b0128a7340774ca549bbd",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "015c979d_ed3e9265",
         "filename": "test/test_ansible_module.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-12-10T18:21:39Z",
       "side": 1,
       "message": "is the \u0027,\u0027 a typo? Why not using Popen here?",
+      "range": {
+        "startLine": 19,
+        "startChar": 33,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "d71e09e2a2ed58815e9b0128a7340774ca549bbd",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a0e4d59_763c848e",
+        "filename": "test/test_ansible_module.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 450
+      },
+      "writtenOn": "2019-12-10T18:32:15Z",
+      "side": 1,
+      "message": "not a typo, added comment explaining it.",
+      "parentUuid": "015c979d_ed3e9265",
       "range": {
         "startLine": 19,
         "startChar": 33,
