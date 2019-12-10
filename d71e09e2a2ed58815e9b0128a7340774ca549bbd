@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "015c979d_ed3e9265",
+        "filename": "test/test_ansible_module.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7
+      },
+      "writtenOn": "2019-12-10T18:21:39Z",
+      "side": 1,
+      "message": "is the \u0027,\u0027 a typo? Why not using Popen here?",
+      "range": {
+        "startLine": 19,
+        "startChar": 33,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "d71e09e2a2ed58815e9b0128a7340774ca549bbd",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
