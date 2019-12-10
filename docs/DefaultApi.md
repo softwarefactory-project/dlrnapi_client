@@ -22,14 +22,14 @@ Get the last tested repo since a specific time.  If a ``job_id`` is specified, t
 -   The last tested repo within that timeframe for that CI job.
 -   The last tested repo within that timeframe for any CI job, so we can have
     several CIs converge on a single repo.
--   The last \"consistent\" repo, if no repo has been tested in the timeframe.  
+-   The last \"consistent\" repo, if no repo has been tested in the timeframe.
 
 If ``sequential_mode`` is set to true, a different algorithm is used. Another parameter ``previous_job_id`` needs to be specified, and the order of precedence
 for the repo returned is:
 
 -   The last tested repo within that timeframe for the CI job described by
     ``previous_job_id``.
--   If no repo for ``previous_job_id`` is found, an error will be returned  
+-   If no repo for ``previous_job_id`` is found, an error will be returned
 
 The sequential mode is meant to be used by CI pipelines, where a CI (n) job
 needs to use the same repo tested by CI (n-1).
@@ -80,14 +80,14 @@ No authorization required
 Get the last tested repo since a specific time (optionally for a CI job), and add an \"in progress\" entry in the CI job table for this.  If a job_id is specified, the order of precedence for the repo returned is:
 
 -   The last tested repo within that timeframe for that CI job.
--   The last tested repo within that timeframe for any CI job, so we can have  
+-   The last tested repo within that timeframe for any CI job, so we can have
     several CIs converge on a single repo.
 -   The last \"consistent\" repo, if no repo has been tested in the timeframe.
 
 If ``sequential_mode`` is set to true, a different algorithm is used. Another parameter ``previous_job_id`` needs to be specified, and the order of precedence
 for the repo returned is:
 
--   The last tested repo within that timeframe for the CI job described by  
+-   The last tested repo within that timeframe for the CI job described by
     ``previous_job_id``.
 -   If no repo for ``previous_job_id`` is found, an error will be returned.
 
@@ -194,9 +194,9 @@ Name | Type | Description  | Notes
 
 
 
-Get all the promotions, optionally for a specific repository or promotion name. 
+Get all the promotions, optionally for a specific repository or promotion name.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -208,7 +208,7 @@ from pprint import pprint
 api_instance = swagger_client.DefaultApi()
 params = swagger_client.Params5() # Params5 | The JSON params to post
 
-try: 
+try:
     api_response = api_instance.api_promotions_get(params)
     pprint(api_response)
 except ApiException as e:
@@ -219,7 +219,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**Params5**](Params5.md)| The JSON params to post | 
+ **params** | [**Params5**](Params5.md)| The JSON params to post |
 
 ### Return type
 
@@ -287,7 +287,7 @@ No authorization required
 # **api_remote_import_post**
 > ModelImport api_remote_import_post(params=params)
 
-Import a commit built by another instance. This API call mimics the behavior of the ``dlrn-remote`` command, with the only exception of not being able to specify a custom rdoinfo location.       
+Import a commit built by another instance. This API call mimics the behavior of the ``dlrn-remote`` command, with the only exception of not being able to specify a custom rdoinfo location.
 
 ### Example
 ```python

@@ -16,7 +16,7 @@ def test_ansible():
     # os.environ['ANSIBLE_LIBRARY'] = p
 
     x = os.system(
-        "ANSIBLE_LIBRARY=%s " \
-        "ansible -vv -i localhost, --connection=local localhost -m dlrn_api " \
+        "ANSIBLE_LIBRARY=%s "
+        "ansible -vv -i localhost, --connection=local localhost -m dlrn_api "
         "-a 'action=repo-get host=https://trunk.rdoproject.org/api-centos-master-uc' " % p)
     assert x == 0

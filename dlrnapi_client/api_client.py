@@ -45,7 +45,7 @@ class ApiClient(object):
     PRIMITIVE_TYPES = (float, bool, bytes, text_type) + integer_types
     NATIVE_TYPES_MAPPING = {
         'int': int,
-        'long': int if PY3 else long,
+        'long': int if PY3 else long,  # noqa F821
         'float': float,
         'str': str,
         'bool': bool,
@@ -548,7 +548,7 @@ class ApiClient(object):
         try:
             return klass(data)
         except UnicodeEncodeError:
-            return unicode(data)
+            return text_type(data)
         except TypeError:
             return data
 
