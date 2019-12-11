@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f3c71d7_df922e11",
+        "filename": "test/test_ansible_module.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 271
+      },
+      "writtenOn": "2019-12-11T11:28:58Z",
+      "side": 1,
+      "message": "I usually worry about functional test taht use real world resource as testing ground. This can be ok for now, maybe for the future the module could support the check_mode argument, so we can run it with --check.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 75
+      },
+      "revId": "1d7f09128deb4a94340f91fbe7e46c0d8aa16386",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
