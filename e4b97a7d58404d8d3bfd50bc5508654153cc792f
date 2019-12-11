@@ -22,6 +22,30 @@
       "revId": "e4b97a7d58404d8d3bfd50bc5508654153cc792f",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f25311e_38cb2808",
+        "filename": ".zuul.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 450
+      },
+      "writtenOn": "2019-12-11T11:49:54Z",
+      "side": 1,
+      "message": "Yeah, i figured out it myself. We will use normal VMs until we get containers based one easier to use.",
+      "parentUuid": "b0dc7638_e455760b",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 25
+      },
+      "revId": "e4b97a7d58404d8d3bfd50bc5508654153cc792f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
     }
   ]
 }
