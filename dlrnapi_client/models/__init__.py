@@ -14,7 +14,9 @@
 from __future__ import absolute_import
 
 # import models into model package
+from dlrnapi_client.models.agg_query import AggQuery # noqa
 from dlrnapi_client.models.ci_vote import CIVote  # noqa
+from dlrnapi_client.models.ci_agg_vote import CIAggVote  # noqa
 from dlrnapi_client.models.metrics import Metrics  # noqa
 from dlrnapi_client.models.metrics import MetricsRequest  # noqa
 from dlrnapi_client.models.model_import import ModelImport  # noqa

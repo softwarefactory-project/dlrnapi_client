@@ -81,6 +81,19 @@ def repo_status(api_instance, options):
         raise e
 
 
+def agg_status(api_instance, options):
+    params = dlrnapi_client.AggQuery()  # AggQuery | The JSON params to post
+    params.aggregate_hash = options.agg_hash
+    if options.success:
+        params.success = str(options.success)
+
+    try:
+        api_response = api_instance.api_agg_status_get(params)
+        return api_response
+    except ApiException as e:
+        raise e
+
+
 def repo_promote(api_instance, options):
     params = dlrnapi_client.Promotion()  # Promotion | The JSON params to post
     params.commit_hash = options.commit_hash
@@ -99,6 +112,8 @@ def get_promotions(api_instance, options):
         params.commit_hash = options.commit_hash
     if options.distro_hash:
         params.distro_hash = options.distro_hash
+    if options.agg_hash:
+        params.aggregate_hash = options.agg_hash
     if options.promote_name:
         params.promote_name = options.promote_name
     if options.offset:
@@ -120,10 +135,25 @@ def report_result(api_instance, options):
     params.job_id = options.job_id
     params.commit_hash = options.commit_hash
     params.distro_hash = options.distro_hash
+    params.aggregate_hash = options.agg_hash
     params.success = str(options.success)
     params.url = options.info_url
     params.timestamp = options.timestamp
     params.notes = options.notes
+
+    if (params.commit_hash and not params.distro_hash) or\
+       (not params.commit_hash and params.distro_hash):
+        raise Exception('Both --commit-hash and --distro-hash must be '
+                        'specified together')
+
+    if params.aggregate_hash and (params.commit_hash or params.distro_hash):
+        raise Exception('--agg-hash is mutually exclusive with --commit-hash '
+                        'and --distro-hash')
+
+    if (not params.aggregate_hash and not params.commit_hash and
+            not params.distro_hash):
+        raise Exception('Must specify either --agg-hash or --commit-hash and '
+                        '--distro-hash')
 
     try:
         api_response = api_instance.api_report_result_post(params)
@@ -162,6 +192,7 @@ command_funcs = {
     'repo-get': get_last_tested_repo,
     'repo-use': post_last_tested_repo,
     'repo-status': repo_status,
+    'agg-status': agg_status,
     'report-result': report_result,
     'repo-promote': repo_promote,
     'commit-import': import_commit,
@@ -267,15 +298,31 @@ def main():
                                 'the CI reports with the specified vote. If '
                                 'not set, return all CI reports.')
 
+    # Subcommand agg-status
+    parser_st = subparsers.add_parser('agg-status',
+                                      help='Get all the CI reports for a '
+                                           'specific aggregated repository.')
+    parser_st.add_argument('--agg-hash', type=str, required=True,
+                           help='hash of the aggregated repo to fetch '
+                                'information for.')
+    parser_st.add_argument('--success', type=str, default=None,
+                           help='If set to a value (true/false), only return '
+                                'the CI reports with the specified vote. If '
+                                'not set, return all CI reports.')
+
     # Subcommand report-result
     parser_rep = subparsers.add_parser('report-result',
                                        help='Report the result of a CI job')
     parser_rep.add_argument('--job-id', type=str, required=True,
                             help='Name of the CI sending the vote')
-    parser_rep.add_argument('--commit-hash', type=str, required=True,
+    parser_rep.add_argument('--commit-hash', type=str, required=False,
                             help='commit_hash of tested repo')
-    parser_rep.add_argument('--distro-hash', type=str, required=True,
+    parser_rep.add_argument('--distro-hash', type=str, required=False,
                             help='distro_hash of tested repo')
+    parser_rep.add_argument('--agg-hash', type=str, required=False,
+                            help='hash of the tested aggregated repo. Note '
+                            'that either --commit-hash and --distro-hash or'
+                            ' --agg-hash must be specified.')
     parser_rep.add_argument('--info-url', type=str, required=True,
                             help='URL where to find additional information '
                                  'from the CI execution')
@@ -309,6 +356,8 @@ def main():
                                 help='distro_hash of the repo to search '
                                      'promotions for. Requires --commit-hash '
                                      'if specified.')
+    parser_promget.add_argument('--agg-hash', type=str, required=False,
+                                help='hash of the tested aggregated repo.')
     parser_promget.add_argument('--promote-name', type=str, required=False,
                                 help='Filter results for this promotion name.')
     parser_promget.add_argument('--offset', type=int, required=False,

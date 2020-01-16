@@ -15,11 +15,11 @@ from __future__ import absolute_import
 
 import unittest
 
-from dlrnapi_client.models.promotion_query import PromotionQuery
+from dlrnapi_client.models.ci_agg_vote import CIAggVote
 
 
-class TestPromotionQuery(unittest.TestCase):
-    """Promotion unit test stubs """
+class TestCIAggVote(unittest.TestCase):
+    """CIAggVote unit test stubs """
 
     def setUp(self):
         pass
@@ -27,12 +27,11 @@ class TestPromotionQuery(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPromotionQuery(self):
-        """Test PromotionQuery """
-        model = PromotionQuery()
-        expected = {'promote_name': None, 'commit_hash': None,
-                    'distro_hash': None, 'offset': None,
-                    'limit': None, 'component': None,
+    def testCIAggVote(self):
+        """Test CIAggVote """
+        model = CIAggVote()
+        expected = {'job_id': None, 'success': None, 'url': None,
+                    'timestamp': None, 'notes': None, 'in_progress': None,
                     'aggregate_hash': None}
         self.assertEqual(model.to_dict(), expected)
 
