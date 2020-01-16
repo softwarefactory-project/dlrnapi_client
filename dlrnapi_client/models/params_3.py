@@ -21,7 +21,8 @@ class Params3(object):
     Do not edit the class manually.
     """
     def __init__(self, job_id=None, commit_hash=None, distro_hash=None,
-                 url=None, timestamp=None, success=None, notes=None):
+                 aggregate_hash=None, url=None, timestamp=None, success=None,
+                 notes=None):
         """Params3 - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -33,6 +34,7 @@ class Params3(object):
             'job_id': 'str',
             'commit_hash': 'str',
             'distro_hash': 'str',
+            'aggregate_hash': 'str',
             'url': 'str',
             'timestamp': 'int',
             'success': 'bool',
@@ -43,6 +45,7 @@ class Params3(object):
             'job_id': 'job_id',
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
+            'aggregate_hash': 'aggregate_hash',
             'url': 'url',
             'timestamp': 'timestamp',
             'success': 'success',
@@ -52,6 +55,7 @@ class Params3(object):
         self._job_id = job_id
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
+        self._aggregate_hash = aggregate_hash
         self._url = url
         self._timestamp = timestamp
         self._success = success
@@ -102,10 +106,6 @@ class Params3(object):
         :param commit_hash: The commit_hash of this Params3.
         :type: str
         """
-        if commit_hash is None:
-            raise ValueError("Invalid value for `commit_hash`, must not be"
-                             " `None`")
-
         self._commit_hash = commit_hash
 
     @property
@@ -128,11 +128,29 @@ class Params3(object):
         :param distro_hash: The distro_hash of this Params3.
         :type: str
         """
-        if distro_hash is None:
-            raise ValueError("Invalid value for `distro_hash`, must not be"
-                             " `None`")
-
         self._distro_hash = distro_hash
+
+    @property
+    def aggregate_hash(self):
+        """Gets the aggregate_hash of this Params3.
+
+        Hash of tested aggregated repo.
+
+        :return: The aggregate_hash of this Params3.
+        :rtype: str
+        """
+        return self._aggregate_hash
+
+    @aggregate_hash.setter
+    def aggregate_hash(self, aggregate_hash):
+        """Sets the aggregate_hash of this Params3.
+
+        Hash of tested aggregated repo.
+
+        :param aggregate_hash: The aggregate_hash of this Params3.
+        :type: str
+        """
+        self._aggregate_hash = aggregate_hash
 
     @property
     def url(self):

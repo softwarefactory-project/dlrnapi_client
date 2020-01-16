@@ -20,9 +20,9 @@ class Promotion(object):
 
     Do not edit the class manually.
     """
-    def __init__(self, commit_hash=None, distro_hash=None, promote_name=None,
-                 timestamp=None, user=None, repo_hash=None, repo_url=None,
-                 component=None):
+    def __init__(self, commit_hash=None, distro_hash=None, aggregate_hash=None,
+                 promote_name=None, timestamp=None, user=None, repo_hash=None,
+                 repo_url=None, component=None):
         """Promotion - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -33,6 +33,7 @@ class Promotion(object):
         self.swagger_types = {
             'commit_hash': 'str',
             'distro_hash': 'str',
+            'aggregate_hash': 'str',
             'promote_name': 'str',
             'timestamp': 'int',
             'user': 'str',
@@ -44,6 +45,7 @@ class Promotion(object):
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
+            'aggregate_hash': 'aggregate_hash',
             'promote_name': 'promote_name',
             'timestamp': 'timestamp',
             'user': 'user',
@@ -54,6 +56,7 @@ class Promotion(object):
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
+        self._aggregate_hash = aggregate_hash
         self._promote_name = promote_name
         self._timestamp = timestamp
         self._user = user
@@ -106,6 +109,29 @@ class Promotion(object):
         """
 
         self._distro_hash = distro_hash
+
+    @property
+    def aggregate_hash(self):
+        """Gets the aggregate_hash of this Promotion.
+
+        aggregate_hash of promoted repo
+
+        :return: The aggregate_hash of this Promotion.
+        :rtype: str
+        """
+        return self._aggregate_hash
+
+    @aggregate_hash.setter
+    def aggregate_hash(self, aggregate_hash):
+        """Sets the aggregate_hash of this Promotion.
+
+        aggregate_hash of promoted repo
+
+        :param aggregate_hash: The aggregate_hash of this Promotion.
+        :type: str
+        """
+
+        self._aggregate_hash = aggregate_hash
 
     @property
     def promote_name(self):

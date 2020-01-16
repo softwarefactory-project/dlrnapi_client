@@ -32,7 +32,7 @@ class TestParams3(unittest.TestCase):
         model = Params3()
         expected = {'job_id': None, 'success': None, 'url': None,
                     'timestamp': None, 'notes': None, 'distro_hash': None,
-                    'commit_hash': None}
+                    'commit_hash': None, 'aggregate_hash': None}
         self.assertEqual(model.to_dict(), expected)
 
 
