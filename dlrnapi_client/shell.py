@@ -120,10 +120,25 @@ def report_result(api_instance, options):
     params.job_id = options.job_id
     params.commit_hash = options.commit_hash
     params.distro_hash = options.distro_hash
+    params.aggregate_hash = options.agg_hash
     params.success = str(options.success)
     params.url = options.info_url
     params.timestamp = options.timestamp
     params.notes = options.notes
+
+    if (params.commit_hash and not params.distro_hash) or\
+       (not params.commit_hash and params.distro_hash):
+        raise Exception('Both --commit-hash and --distro-hash must be '
+                        'specified together')
+
+    if params.aggregate_hash and (params.commit_hash or params.distro_hash):
+        raise Exception('--agg-hash is mutually exclusive with --commit-hash '
+                        'and --distro-hash')
+
+    if (not params.aggregate_hash and not params.commit_hash and
+            not params.distro_hash):
+        raise Exception('Must specify either --agg-hash or --commit-hash and '
+                        '--distro-hash')
 
     try:
         api_response = api_instance.api_report_result_post(params)
@@ -272,10 +287,14 @@ def main():
                                        help='Report the result of a CI job')
     parser_rep.add_argument('--job-id', type=str, required=True,
                             help='Name of the CI sending the vote')
-    parser_rep.add_argument('--commit-hash', type=str, required=True,
+    parser_rep.add_argument('--commit-hash', type=str, required=False,
                             help='commit_hash of tested repo')
-    parser_rep.add_argument('--distro-hash', type=str, required=True,
+    parser_rep.add_argument('--distro-hash', type=str, required=False,
                             help='distro_hash of tested repo')
+    parser_rep.add_argument('--agg-hash', type=str, required=False,
+                            help='hash of the tested aggregated repo. Note '
+                            'that either --commit-hash and --distro-hash or'
+                            ' --agg-hash must be specified.')
     parser_rep.add_argument('--info-url', type=str, required=True,
                             help='URL where to find additional information '
                                  'from the CI execution')
