@@ -32,7 +32,8 @@ options:
         description:
             - Action to take
         choices: [repo-get, repo-use, repo-status, report-result, repo-promote,
-                  commit-import, promotion-get, build-metrics, agg-status]
+                  repo-promote-batch, commit-import, promotion-get,
+                  build-metrics, agg-status]
         required: true
     host:
         description:
@@ -133,8 +134,12 @@ options:
         description:
             - If action is repo-get, repo-use or promotion-get, filter on
               this component.
+    hash_pairs:
+        description:
+            - If action is repo-promote-batch, this is a list of commit_hash
+              and distro_hash pairs to be promoted using promote_name.
 requirements:
-    - "python >= 2.6"
+    - "python >= 2.7"
     - "python-dlrnapi_client"
 '''
 
@@ -213,6 +218,19 @@ EXAMPLES = '''
     distro_hash: 024e24f0cf4366c2290c22f24e42de714d1addd1
     promote_name: current-passed-ci
 
+# Do a batch promotion
+- dlrn_api:
+    action: repo-promote-batch
+    host: http://dlrn.example.com:5000
+    user: myuser
+    password: mypasswd
+    hash_pairs:
+        - commit_hash: 3a9326f251b9a4162eb0dfa9f1c924ef47c2c55a
+          distro_hash: 024e24f0cf4366c2290c22f24e42de714d1addd1
+        - commit_hash: 3a9326f251b9a4162eb0dfa9f1c924ef47c2c533
+          distro_hash: 024e24f0cf4366c2290c22f24e42de714d1addae
+    promote_name: current-passed-ci
+
 # Import a remote commit
 - dlrn_api:
     action: commit-import
@@ -222,7 +240,7 @@ EXAMPLES = '''
     repo_url: http://builder.example.com/3a9326f251b9a4162eb0_024e24f0
 '''
 auth_required_actions = ['repo-use', 'report-result', 'repo-promote',
-                         'commit-import']
+                         'repo-promote-batch', 'commit-import']
 
 
 class DLRNAPIWrapper(object):
@@ -247,6 +265,7 @@ class DLRNAPIWrapper(object):
         self.repo_url = params.get('repo_url')
         self.component = params.get('component')
         self.agg_hash = params.get('agg_hash')
+        self.hash_pairs = params.get('hash_pairs')
 
     def check_options(self, action, module):
         if action == 'repo-use':
@@ -280,6 +299,20 @@ class DLRNAPIWrapper(object):
                 module.fail_json(msg="Missing parameter distro_hash")
             if self.promote_name is None:
                 module.fail_json(msg="Missing parameter promote_name")
+        elif action == 'repo-promote-batch':
+            if self.hash_pairs is None:
+                module.fail_json(msg="Missing parameter hash_pairs")
+            if self.promote_name is None:
+                module.fail_json(msg="Missing parameter promote_name")
+            # The hash_pairs format is different when passed to the client,
+            # so convert it here
+            hash_pairs = ''
+            for pair in self.hash_pairs[:-1]:
+                hash_pairs += '%s_%s,' % (pair['commit_hash'],
+                                          pair['distro_hash'])
+            hash_pairs += '%s_%s' % (self.hash_pairs[-1]['commit_hash'],
+                                     self.hash_pairs[-1]['distro_hash'])
+            self.hash_pairs = hash_pairs
         elif action == 'commit-import':
             if self.repo_url is None:
                 module.fail_json(msg="Missing parameter repo_url")
@@ -298,13 +331,12 @@ class DLRNAPIWrapper(object):
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            action=dict(required=True, choices=['repo-get', 'repo-use',
-                                                'repo-status', 'report-result',
-                                                'repo-promote',
-                                                'commit-import',
-                                                'promotion-get',
-                                                'build-metrics',
-                                                'agg-status']),
+            action=dict(required=True,
+                        choices=['repo-get', 'repo-use',
+                                 'repo-status', 'report-result',
+                                 'repo-promote', 'repo-promote-batch',
+                                 'commit-import', 'promotion-get',
+                                 'build-metrics', 'agg-status']),
             host=dict(required=True),
             user=dict(),
             password=dict(no_log=True),
@@ -325,7 +357,8 @@ def main():
             end_date=dict(),
             package_name=dict(),
             component=dict(),
-            agg_hash=dict()
+            agg_hash=dict(),
+            hash_pairs=dict(type='list')
         )
     )
 
