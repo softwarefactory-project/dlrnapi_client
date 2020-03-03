@@ -424,6 +424,126 @@ class DefaultApi(object):
                                             '_request_timeout'),
                                         collection_formats=collection_formats)
 
+    def api_promote_batch_post(self, params, **kwargs):
+        """Atomically promote a list of repositories.
+
+        This is the equivalent of calling api_promote_post multiple times, one
+        with each commit/distro_hash combination. The only difference is that
+        the call is atomic, and when components are enabled, the aggregated
+        repo files are only updated once.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.api_promote_batch_post(params,
+                                                callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param  list[Promotion] params: The JSON params to post (required)
+        :return: Promotion
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.api_promote_batch_post_with_http_info(params, **kwargs)
+        else:
+            (data) = self.api_promote_batch_post_with_http_info(params,
+                                                                **kwargs)
+            return data
+
+    def api_promote_batch_post_with_http_info(self, params, **kwargs):
+        """Atomically promote a list of repositories.
+
+        This is the equivalent of calling api_promote_post multiple times, one
+        with each commit/distro_hash combination. The only difference is that
+        the call is atomic, and when components are enabled, the aggregated
+        repo files are only updated once.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.api_promote_batch_post_with_http_info(params,
+                                                               callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param  list[Promotion] params: The JSON params to post (required)
+        :return: Promotion
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['params']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method api_promote_post" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'params' is set
+        if ('params' not in params) or (params['params'] is None):
+            raise ValueError("Missing the required parameter `params` when "
+                             "calling `api_promote_post`")
+
+        collection_formats = {}
+
+        resource_path = '/api/promote-batch'.replace('{format}', 'json')
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'params' in params:
+            body_params = params['params']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['basicAuth']
+
+        return self.api_client.call_api(resource_path, 'POST',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='Promotion',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get(
+                                            '_return_http_data_only'),
+                                        _preload_content=params.get(
+                                            '_preload_content', True),
+                                        _request_timeout=params.get(
+                                            '_request_timeout'),
+                                        collection_formats=collection_formats)
+
     def api_remote_import_post(self, params, **kwargs):
         """Import a commit built by another instance.
 

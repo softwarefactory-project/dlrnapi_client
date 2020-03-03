@@ -3,8 +3,10 @@
     name: dlrnapi_client
     check:
       jobs: &jobs
-        - tox-pep8
-        - tox-py27
+        - tox-pep8:
+            nodeset: fedora-latest-pod
+        - tox-py27:
+            nodeset: centos-7-pod
         - tox-py36:
             nodeset: centos-8-cloud
         - tox-py37:

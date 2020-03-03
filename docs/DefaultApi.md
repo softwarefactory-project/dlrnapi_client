@@ -7,10 +7,12 @@ Method |HTTP request |Description
 [**api_last_tested_repo_get**](DefaultApi.md#api_last_tested_repo_get) |**GET** /api/last_tested_repo |
 [**api_last_tested_repo_post**](DefaultApi.md#api_last_tested_repo_post)|**POST** /api/last_tested_repo |
 [**api_promote_post**](DefaultApi.md#api_promote_post) | **POST** /api/promote |
+[**api_promote_batch_post**](DefaultApi.md#api_promote_batch_post) | **POST** /api/promote-batch |
 [**api_promotions_get**](DefaultApi.md#api_promotions_get) | **GET** /api/promotions |
 [**api_build_metrics_get**](DefaultApi.md#api_build_metrics_get)|**GET** /api/metrics/builds|
 [**api_remote_import_post**](DefaultApi.md#api_remote_import_post) |**POST** /api/remote/import |
 [**api_repo_status_get**](DefaultApi.md#api_repo_status_get)|**GET** /api/repo_status |
+[**api_agg_status_get**](DefaultApi.md#api_agg_status_get)|**GET** /api/agg_status |
 [**api_report_result_post**](DefaultApi.md#api_report_result_post)|**POST** /api/report_result|
 
 
@@ -173,6 +175,66 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **params**|[**Promotion**](Promotion.md)|The JSON params to post|\[optional\]
+
+### Return type
+
+[**Promotion**](Promotion.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+-   **Content-Type**: application/json
+-   **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_promote_batch_post**
+> Promotion api_promote_batch_post(params=params)
+
+Promote several repositories as an atomic operation. Note the API will refuse
+to promote using promote_name=\"consistent\" or \"current\", since those are
+reserved keywords for DLRN.
+
+### Example
+```python
+from __future__ import print_statement
+import time
+import dlrnapi_client
+from dlrnapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure HTTP basic authorization: basicAuth
+dlrnapi_client.configuration.username = 'YOUR_USERNAME'
+dlrnapi_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = dlrnapi_client.DefaultApi()
+
+params = list()
+hash_pairs = options.hash_pairs.split(',')
+for pair in hash_pairs:
+    commit_hash = pair.split('_')[0]
+    distro_hash = pair.split('_')[1]
+    param = dlrnapi_client.Promotion()
+    param.commit_hash = commit_hash
+    param.distro_hash = distro_hash
+    param.promote_name = options.promote_name
+    params.append(param)
+try:
+    api_response = api_instance.api_promote_batch_post(params)
+    pprint(api_response)
+except ApiException as e:
+    raise e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**params**|[list(**Promotion**)](Promotion.md)|The JSON params to post|\[optional\]
 
 ### Return type
 
@@ -366,6 +428,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**list[CIVote]**](CIVote.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+-   **Content-Type**: application/json
+-   **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_agg_status_get**
+> list\[CIAggVote\] api_agg_status_get(params=params)
+
+Get all the CI reports for a specific repo aggregate.
+
+### Example
+```python
+from __future__ import print_statement
+import time
+import dlrnapi_client
+from dlrnapi_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dlrnapi_client.DefaultApi()
+params = dlrnapi_client.AggQuery()  # AggQuery | The JSON params to post
+
+try:
+    api_response = api_instance.api_agg_status_get(params=params)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->api_agg_status_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**params**|[**AggQuery**](AggQuery.md)|The JSON params to post|\[optional\]
+
+### Return type
+
+[**list[CIAggVote]**](CIAggVote.md)
 
 ### Authorization
 
