@@ -32,7 +32,7 @@ options:
         description:
             - Action to take
         choices: [repo-get, repo-use, repo-status, report-result, repo-promote,
-                  commit-import, promotion-get, build-metrics]
+                  commit-import, promotion-get, build-metrics, agg-status]
         required: true
     host:
         description:
@@ -92,6 +92,12 @@ options:
             - If action is repo-promote, distro_hash of the repo to be
               promoted.
             - If action is promotion-get, filter results for this distro hash.
+    agg_hash:
+        description:
+            - If action is report-result, hash of the aggregated repo to
+              report a result on.
+            - If action is promotion-get, filter on the promotions related
+              to this aggregated repo hash.
     info_url:
         description:
             - If action is report-result, URL where to find additional
@@ -240,18 +246,27 @@ class DLRNAPIWrapper(object):
         self.promote_name = params.get('promote_name')
         self.repo_url = params.get('repo_url')
         self.component = params.get('component')
+        self.agg_hash = params.get('agg_hash')
 
     def check_options(self, action, module):
         if action == 'repo-use':
             if self.reporting_job_id is None:
                 module.fail_json(msg="Missing parameter reporting_job_id")
         elif action == 'report-result':
+            if self.agg_hash is not None and\
+               (self.commit_hash is not None or self.distro_hash is not None):
+                module.fail_json(msg="agg_hash is incompatible with"
+                                     "commit_hash and distro_hash")
+            if self.agg_hash is None and self.commit_hash is None and\
+               self.distro_hash is None:
+                module.fail_json(msg="Must specify either agg_hash or"
+                                     "commit_hash and distro_hash")
+            if (self.commit_hash is not None and self.distro_hash is None):
+                module.fail_json(msg="Missing parameter distro_hash")
+            if (self.distro_hash is not None and self.commit_hash is None):
+                module.fail_json(msg="Missing parameter commit_hash")
             if self.job_id is None:
                 module.fail_json(msg="Missing parameter job_id")
-            if self.commit_hash is None:
-                module.fail_json(msg="Missing parameter commit_hash")
-            if self.distro_hash is None:
-                module.fail_json(msg="Missing parameter distro_hash")
             if self.info_url is None:
                 module.fail_json(msg="Missing parameter info_url")
             if self.timestamp is None:
@@ -288,7 +303,8 @@ def main():
                                                 'repo-promote',
                                                 'commit-import',
                                                 'promotion-get',
-                                                'build-metrics']),
+                                                'build-metrics',
+                                                'agg-status']),
             host=dict(required=True),
             user=dict(),
             password=dict(no_log=True),
@@ -308,7 +324,8 @@ def main():
             start_date=dict(),
             end_date=dict(),
             package_name=dict(),
-            component=dict()
+            component=dict(),
+            agg_hash=dict()
         )
     )
 
