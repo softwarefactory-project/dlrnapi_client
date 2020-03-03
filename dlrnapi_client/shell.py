@@ -106,6 +106,24 @@ def repo_promote(api_instance, options):
         raise e
 
 
+def repo_promote_batch(api_instance, options):
+    params = list()
+    hash_pairs = options.hash_pairs.split(',')
+    for pair in hash_pairs:
+        commit_hash = pair.split('_')[0]
+        distro_hash = pair.split('_')[1]
+        param = dlrnapi_client.Promotion()
+        param.commit_hash = commit_hash
+        param.distro_hash = distro_hash
+        param.promote_name = options.promote_name
+        params.append(param)
+    try:
+        api_response = api_instance.api_promote_batch_post(params)
+        return api_response
+    except ApiException as e:
+        raise e
+
+
 def get_promotions(api_instance, options):
     params = dlrnapi_client.PromotionQuery()  # PromotionQuery
     if options.commit_hash:
@@ -195,6 +213,7 @@ command_funcs = {
     'agg-status': agg_status,
     'report-result': report_result,
     'repo-promote': repo_promote,
+    'repo-promote-batch': repo_promote_batch,
     'commit-import': import_commit,
     'promotion-get': get_promotions,
     'build-metrics': get_metrics_builds,
@@ -341,6 +360,18 @@ def main():
                              help='commit_hash of the repo to be promoted')
     parser_prom.add_argument('--distro-hash', type=str, required=True,
                              help='distro_hash of the repo to be promoted')
+    parser_prom.add_argument('--promote-name', type=str, required=True,
+                             help='Name to be used for the promotion')
+
+    # Subcommand repo-promote-batch
+    parser_prom = subparsers.add_parser('repo-promote-batch',
+                                        help='Promote multiple repositories '
+                                             'at the same time, as an atomic '
+                                             'operation.')
+    parser_prom.add_argument('--hash-pairs', type=str, required=True,
+                             help='commit_hash+distro_hash of the repos to '
+                                  'be promoted, specified as a comma-separated'
+                                  ' list of commit_distro hash pairs')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
 
