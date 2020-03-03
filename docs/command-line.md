@@ -4,7 +4,7 @@
 
 ```bash
 usage: dlrnapi [-h] --url URL [--username USERNAME] [--password PASSWORD]
-               {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,promotion-get,commit-import,build-metrics}
+               {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,repo-promote-batch,promotion-get,commit-import,build-metrics}
                ...
 
 optional arguments:
@@ -20,7 +20,7 @@ optional arguments:
 subcommands:
   available subcommands
 
-  {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,promotion-get,commit-import,build-metrics}
+  {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,repo-promote-batch,promotion-get,commit-import,build-metrics}
     repo-get            Get last tested repo
     repo-use            Get the last tested repo since a specific time
                         (optionally for a CI job), and add an "in progress"
@@ -30,13 +30,15 @@ subcommands:
                         repository.
     report-result       Report the result of a CI job
     repo-promote        Promote a repository
+    repo-promote-batch  Promote multiple repositories at the same time, as an
+                        atomic operation.
     promotion-get       Get information about promotions
     commit-import       Import a commit built by another instance
     build-metrics       Fetch build metrics in a time period
 ```
 The **url** parameter is mandatory in all cases. **username** and **password**
-are required for the _repo-use_, _report-result_, _repo-promote_ and
-_commit-import_ subcommands.
+are required for the _repo-use_, _report-result_, _repo-promote_,
+_repo-promote-batch_ and _commit-import_ subcommands.
 
 For detailed usage information on each subcommand, run:
 
