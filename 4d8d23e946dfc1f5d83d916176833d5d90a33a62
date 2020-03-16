@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "befbc851_811efbeb",
+        "filename": "docs/command-line.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 588
+      },
+      "writtenOn": "2020-03-16T09:47:34Z",
+      "side": 1,
+      "message": "left a comment on server side wondering if \u0027promote-aggregate\u0027 is more descriptive than batch (re the \u0027aggregate hash\u0027 md5 identifier)",
+      "revId": "4d8d23e946dfc1f5d83d916176833d5d90a33a62",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
