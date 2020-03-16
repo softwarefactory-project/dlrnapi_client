@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1156222b_f59993d3",
+        "filename": "README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 271
+      },
+      "writtenOn": "2020-03-16T15:54:07Z",
+      "side": 1,
+      "message": "I\u0027d change this to an OR ...",
+      "revId": "4d8d23e946dfc1f5d83d916176833d5d90a33a62",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "befbc851_811efbeb",
         "filename": "docs/command-line.md",
         "patchSetId": 2
