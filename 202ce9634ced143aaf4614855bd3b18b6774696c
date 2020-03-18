@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1835130e_79918a57",
+        "filename": "dlrnapi_client/ansible/dlrn_api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2020-03-18T10:33:47Z",
+      "side": 1,
+      "message": "Good catch, I forgot to update it here.",
+      "parentUuid": "525b1cff_308e8edc",
+      "range": {
+        "startLine": 142,
+        "startChar": 16,
+        "endLine": 142,
+        "endChar": 20
+      },
+      "revId": "202ce9634ced143aaf4614855bd3b18b6774696c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63e1f493_8a577e2f",
         "filename": "docs/CIAggVote.md",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-03-18T10:22:43Z",
       "side": 1,
       "message": "aggregate_hash",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "202ce9634ced143aaf4614855bd3b18b6774696c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd312cb7_b7aeb602",
+        "filename": "docs/CIAggVote.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2020-03-18T10:33:47Z",
+      "side": 1,
+      "message": "oops",
+      "parentUuid": "63e1f493_8a577e2f",
       "range": {
         "startLine": 7,
         "startChar": 2,
