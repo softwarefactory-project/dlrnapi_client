@@ -150,13 +150,13 @@ Javier Peña (jpena@redhat.com)
 .. _api_last_tested_repo_get: docs/DefaultApi.md#api_last_tested_repo_get
 .. _api_last_tested_repo_post: docs/DefaultApi.md#api_last_tested_repo_post
 .. _api_promote_post: docs/DefaultApi.md#api_promote_post
-.. _api_promote_post: docs/DefaultApi.md#api_promote_batch_post
+.. _api_promote_batch_post: docs/DefaultApi.md#api_promote_batch_post
 .. _api_promotions_get: docs/DefaultApi.md#api_promotions_get
 .. _api_build_metrics_get: docs/DefaultApi.md#api_build_metrics_get
 .. _api_remote_import_post: docs/DefaultApi.md#api_remote_import_post
 .. _api_repo_status_get: docs/DefaultApi.md#api_repo_status_get
 .. _api_report_result_post: docs/DefaultApi.md#api_report_result_post
-.. _api_report_result_post: docs/DefaultApi.md#api_agg_status_get
+.. _api_agg_status_get: docs/DefaultApi.md#api_agg_status_get
 .. _CIVote: docs/CIVote.md
 .. _Import: docs/ModelImport.md
 .. _Params: docs/Params.md
