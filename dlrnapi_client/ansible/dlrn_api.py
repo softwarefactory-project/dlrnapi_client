@@ -93,6 +93,12 @@ options:
             - If action is repo-promote, distro_hash of the repo to be
               promoted.
             - If action is promotion-get, filter results for this distro hash.
+    extended_hash:
+        description:
+            - If action is repo-promote, extended_hash of the repo to be
+              promoted.
+            - If action is promotion-get, filter results for this extended
+              hash.
     agg_hash:
         description:
             - If action is report-result, hash of the aggregated repo to
@@ -258,6 +264,7 @@ class DLRNAPIWrapper(object):
         self.previous_job_id = params.get('previous_job_id')
         self.commit_hash = params.get('commit_hash')
         self.distro_hash = params.get('distro_hash')
+        self.extended_hash = params.get('extended_hash')
         self.info_url = params.get('info_url')
         self.timestamp = params.get('timestamp')
         self.notes = params.get('notes')
@@ -308,10 +315,21 @@ class DLRNAPIWrapper(object):
             # so convert it here
             hash_pairs = ''
             for pair in self.hash_pairs[:-1]:
-                hash_pairs += '%s_%s,' % (pair['commit_hash'],
-                                          pair['distro_hash'])
-            hash_pairs += '%s_%s' % (self.hash_pairs[-1]['commit_hash'],
-                                     self.hash_pairs[-1]['distro_hash'])
+                if 'extended_hash' in pair:
+                    hash_pairs += '%s_%s_%s,' % (pair['commit_hash'],
+                                                 pair['distro_hash'],
+                                                 pair['extended_hash'])
+                else:
+                    hash_pairs += '%s_%s,' % (pair['commit_hash'],
+                                              pair['distro_hash'])
+            if 'extended_hash' in self.hash_pairs[-1]:
+                hash_pairs += '%s_%s_%s' % (
+                    self.hash_pairs[-1]['commit_hash'],
+                    self.hash_pairs[-1]['distro_hash'],
+                    self.hash_pairs[-1]['extended_hash'])
+            else:
+                hash_pairs += '%s_%s' % (self.hash_pairs[-1]['commit_hash'],
+                                         self.hash_pairs[-1]['distro_hash'])
             self.hash_pairs = hash_pairs
         elif action == 'commit-import':
             if self.repo_url is None:
@@ -348,6 +366,7 @@ def main():
             previous_job_id=dict(),
             commit_hash=dict(),
             distro_hash=dict(),
+            extended_hash=dict(),
             info_url=dict(),
             timestamp=dict(),
             notes=dict(),
