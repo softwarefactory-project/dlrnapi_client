@@ -98,6 +98,7 @@ def repo_promote(api_instance, options):
     params = dlrnapi_client.Promotion()  # Promotion | The JSON params to post
     params.commit_hash = options.commit_hash
     params.distro_hash = options.distro_hash
+    params.extended_hash = options.extended_hash
     params.promote_name = options.promote_name
     try:
         api_response = api_instance.api_promote_post(params)
@@ -110,11 +111,17 @@ def repo_promote_batch(api_instance, options):
     params = list()
     hash_pairs = options.hash_pairs.split(',')
     for pair in hash_pairs:
-        commit_hash = pair.split('_')[0]
-        distro_hash = pair.split('_')[1]
+        pair_list = pair.split('_')
+        commit_hash = pair_list[0]
+        distro_hash = pair_list[1]
+        if len(pair_list > 2):
+            extended_hash = '_'.join(pair_list[2:])
+        else:
+            extended_hash = None
         param = dlrnapi_client.Promotion()
         param.commit_hash = commit_hash
         param.distro_hash = distro_hash
+        param.extended_hash = extended_hash
         param.promote_name = options.promote_name
         params.append(param)
     try:
@@ -130,6 +137,8 @@ def get_promotions(api_instance, options):
         params.commit_hash = options.commit_hash
     if options.distro_hash:
         params.distro_hash = options.distro_hash
+    if options.extended_hash:
+        params.extended_hash = options.extended_hash
     if options.agg_hash:
         params.aggregate_hash = options.agg_hash
     if options.promote_name:
@@ -360,6 +369,8 @@ def main():
                              help='commit_hash of the repo to be promoted')
     parser_prom.add_argument('--distro-hash', type=str, required=True,
                              help='distro_hash of the repo to be promoted')
+    parser_prom.add_argument('--extended-hash', type=str, required=False,
+                             help='extended_hash of the repo to be promoted')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
 
@@ -387,6 +398,10 @@ def main():
                                 help='distro_hash of the repo to search '
                                      'promotions for. Requires --commit-hash '
                                      'if specified.')
+    parser_promget.add_argument('--extended-hash', type=str, required=False,
+                                help='extended_hash of the repo to search '
+                                     'promotions for. Requires --commit-hash '
+                                     'and --distro-hash if specified.')
     parser_promget.add_argument('--agg-hash', type=str, required=False,
                                 help='hash of the tested aggregated repo.')
     parser_promget.add_argument('--promote-name', type=str, required=False,
