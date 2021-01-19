@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e170988_feb751ae",
+        "filename": "dlrnapi_client/shell.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 200
+      },
+      "writtenOn": "2021-01-19T09:15:25Z",
+      "side": 1,
+      "message": "I tend to favor readability over compact code (personal preference), so I\u0027d rather keep this.",
+      "parentUuid": "4e0e3a81_f99f762d",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "92dc577dcd115849064e683eb50ad20798bc2081",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d24311e_3262f515",
         "filename": "docs/Promotion.md",
         "patchSetId": 2
