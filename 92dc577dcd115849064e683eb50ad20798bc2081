@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e0e3a81_f99f762d",
+        "filename": "dlrnapi_client/shell.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2021-01-19T08:50:20Z",
+      "side": 1,
+      "message": "Maybe one liner will be look better:\n\nextended_hash \u003d  \u0027_\u0027.join(pair_list[2:]) if pair_list \u003e 2 else None",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "92dc577dcd115849064e683eb50ad20798bc2081",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d24311e_3262f515",
+        "filename": "docs/Promotion.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2021-01-19T08:50:20Z",
+      "side": 1,
+      "message": "cleanup spaces",
+      "range": {
+        "startLine": 8,
+        "startChar": 71,
+        "endLine": 8,
+        "endChar": 73
+      },
+      "revId": "92dc577dcd115849064e683eb50ad20798bc2081",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
