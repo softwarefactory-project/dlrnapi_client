@@ -20,7 +20,8 @@ class Params2(object):
 
     Do not edit the class manually.
     """
-    def __init__(self, commit_hash=None, distro_hash=None, success=None):
+    def __init__(self, commit_hash=None, distro_hash=None, extended_hash=None,
+                 success=None):
         """Params2 - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -31,17 +32,20 @@ class Params2(object):
         self.swagger_types = {
             'commit_hash': 'str',
             'distro_hash': 'str',
+            'extended_hash': 'str',
             'success': 'bool'
         }
 
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
+            'extended_hash': 'extended_hash',
             'success': 'success'
         }
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
+        self._extended_hash = extended_hash
         self._success = success
 
     @property
@@ -95,6 +99,29 @@ class Params2(object):
                              " `None`")
 
         self._distro_hash = distro_hash
+
+    @property
+    def extended_hash(self):
+        """Gets the extended_hash of this Params2.
+
+        extended_hash of tested repo
+
+        :return: The extended_hash of this Params2.
+        :rtype: str
+        """
+        return self._extended_hash
+
+    @extended_hash.setter
+    def extended_hash(self, extended_hash):
+        """Sets the extended_hash of this Params2.
+
+        extended_hash of tested repo
+
+        :param extended_hash: The extended_hash of this Params2.
+        :type: str
+        """
+
+        self._extended_hash = extended_hash
 
     @property
     def success(self):

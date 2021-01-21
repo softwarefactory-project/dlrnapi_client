@@ -95,6 +95,9 @@ options:
             - If action is promotion-get, filter results for this distro hash.
     extended_hash:
         description:
+            - If action is repo-status, extended_hash of the repo to fetch
+              information for.
+            - If action is report-result, extended_hash of tested repo.
             - If action is repo-promote, extended_hash of the repo to be
               promoted.
             - If action is promotion-get, filter results for this extended

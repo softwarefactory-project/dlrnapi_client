@@ -73,6 +73,8 @@ def repo_status(api_instance, options):
     params.distro_hash = options.distro_hash
     if options.success:
         params.success = str(options.success)
+    if options.extended_hash:
+        params.extended_hash = options.extended_hash
 
     try:
         api_response = api_instance.api_repo_status_get(params)
@@ -167,6 +169,8 @@ def report_result(api_instance, options):
     params.url = options.info_url
     params.timestamp = options.timestamp
     params.notes = options.notes
+    if options.extended_hash:
+        params.extended_hash = options.extended_hash
 
     if (params.commit_hash and not params.distro_hash) or\
        (not params.commit_hash and params.distro_hash):
@@ -321,6 +325,9 @@ def main():
     parser_st.add_argument('--distro-hash', type=str, required=True,
                            help='distro_hash of the repo to fetch '
                                 'information for.')
+    parser_st.add_argument('--extended-hash', type=str, required=False,
+                           help='extended_hash of the repo to fetch '
+                                'information for.')
     parser_st.add_argument('--success', type=str, default=None,
                            help='If set to a value (true/false), only return '
                                 'the CI reports with the specified vote. If '
@@ -347,6 +354,8 @@ def main():
                             help='commit_hash of tested repo')
     parser_rep.add_argument('--distro-hash', type=str, required=False,
                             help='distro_hash of tested repo')
+    parser_rep.add_argument('--extended-hash', type=str, required=False,
+                            help='extended_hash of tested repo')
     parser_rep.add_argument('--agg-hash', type=str, required=False,
                             help='hash of the tested aggregated repo. Note '
                             'that either --commit-hash and --distro-hash or'

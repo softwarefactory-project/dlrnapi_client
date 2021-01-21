@@ -21,8 +21,9 @@ class CIVote(object):
     Do not edit the class manually.
     """
     def __init__(self, job_id=None, commit_hash=None, distro_hash=None,
-                 aggregate_hash=None, url=None, timestamp=None,
-                 in_progress=None, success=None, notes=None, component=None):
+                 extended_hash=None, aggregate_hash=None, url=None,
+                 timestamp=None, in_progress=None, success=None, notes=None,
+                 component=None):
         """CIVote - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -34,6 +35,7 @@ class CIVote(object):
             'job_id': 'str',
             'commit_hash': 'str',
             'distro_hash': 'str',
+            'extended_hash': 'str',
             'aggregate_hash': 'str',
             'url': 'str',
             'timestamp': 'int',
@@ -47,6 +49,7 @@ class CIVote(object):
             'job_id': 'job_id',
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
+            'extended_hash': 'extended_hash',
             'aggregate_hash': 'aggregate_hash',
             'url': 'url',
             'timestamp': 'timestamp',
@@ -59,6 +62,7 @@ class CIVote(object):
         self._job_id = job_id
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
+        self._extended_hash = extended_hash
         self._aggregate_hash = aggregate_hash
         self._url = url
         self._timestamp = timestamp
@@ -135,6 +139,29 @@ class CIVote(object):
         """
 
         self._distro_hash = distro_hash
+
+    @property
+    def extended_hash(self):
+        """Gets the extended_hash of this CIVote.
+
+        extended_hash of tested repo
+
+        :return: The extended_hash of this CIVote.
+        :rtype: str
+        """
+        return self._extended_hash
+
+    @extended_hash.setter
+    def extended_hash(self, extended_hash):
+        """Sets the extended_hash of this CIVote.
+
+        extended_hash of tested repo
+
+        :param extended_hash: The extended_hash of this CIVote.
+        :type: str
+        """
+
+        self._extended_hash = extended_hash
 
     @property
     def aggregate_hash(self):

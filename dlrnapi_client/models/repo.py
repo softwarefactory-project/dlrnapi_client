@@ -20,9 +20,9 @@ class Repo(object):
 
     Do not edit the class manually.
     """
-    def __init__(self, commit_hash=None, distro_hash=None, success=None,
-                 job_id=None, in_progress=None, timestamp=None, user=None,
-                 component=None):
+    def __init__(self, commit_hash=None, distro_hash=None, extended_hash=None,
+                 success=None, job_id=None, in_progress=None, timestamp=None,
+                 user=None, component=None):
         """Repo - a model defined in Swagger
 
         :param dict swaggerTypes: The key is attribute name
@@ -33,6 +33,7 @@ class Repo(object):
         self.swagger_types = {
             'commit_hash': 'str',
             'distro_hash': 'str',
+            'extended_hash': 'str',
             'success': 'bool',
             'job_id': 'str',
             'in_progress': 'bool',
@@ -44,6 +45,7 @@ class Repo(object):
         self.attribute_map = {
             'commit_hash': 'commit_hash',
             'distro_hash': 'distro_hash',
+            'extended_hash': 'extended_hash',
             'success': 'success',
             'job_id': 'job_id',
             'in_progress': 'in_progress',
@@ -54,6 +56,7 @@ class Repo(object):
 
         self._commit_hash = commit_hash
         self._distro_hash = distro_hash
+        self._extended_hash = extended_hash
         self._success = success
         self._job_id = job_id
         self._in_progress = in_progress
@@ -106,6 +109,29 @@ class Repo(object):
         """
 
         self._distro_hash = distro_hash
+
+    @property
+    def extended_hash(self):
+        """Gets the extended_hash of this Repo.
+
+        extended_hash of tested repo
+
+        :return: The extended_hash of this Repo.
+        :rtype: str
+        """
+        return self._extended_hash
+
+    @extended_hash.setter
+    def extended_hash(self, extended_hash):
+        """Sets the extended_hash of this Repo.
+
+        extended_hash of tested repo
+
+        :param extended_hash: The extended_hash of this Repo.
+        :type: str
+        """
+
+        self._extended_hash = extended_hash
 
     @property
     def success(self):
