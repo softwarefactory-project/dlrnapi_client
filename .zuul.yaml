@@ -8,7 +8,7 @@
         - tox-py27:
             nodeset: centos-7-pod
         - tox-py36:
-            nodeset: centos-8-cloud
+            nodeset: centos-latest-pod
         - tox-py37:
             nodeset: fedora-latest-pod
         - dlrn-api-functional-centos-7

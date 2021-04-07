@@ -246,7 +246,7 @@ def main():
                         )
     parser.add_argument('--password', '-p',
                         help='password for authentication, defaults to '
-                             '"DLRNAPI_PASSWORD" environment variable is set',
+                             '"DLRNAPI_PASSWORD" environment variable if set',
                         default=os.getenv('DLRNAPI_PASSWORD', None)
                         )
 
@@ -389,9 +389,14 @@ def main():
                                              'at the same time, as an atomic '
                                              'operation.')
     parser_prom.add_argument('--hash-pairs', type=str, required=True,
-                             help='commit_hash+distro_hash of the repos to '
-                                  'be promoted, specified as a comma-separated'
-                                  ' list of commit_distro hash pairs')
+                             help='commit_hash+distro_hash or '
+                                  'commit_hash+distro_hash+extended_hash of '
+                                  'the repos to be promoted, specified as a '
+                                  'comma-separated list of commit_distro or '
+                                  'commit_distro_extended hash groups. If no '
+                                  'extended hash is included, the latest '
+                                  'commit matching the commit and distro '
+                                  'hashes will be promoted.')
     parser_prom.add_argument('--promote-name', type=str, required=True,
                              help='Name to be used for the promotion')
 
