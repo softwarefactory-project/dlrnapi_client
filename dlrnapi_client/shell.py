@@ -116,7 +116,7 @@ def repo_promote_batch(api_instance, options):
         pair_list = pair.split('_')
         commit_hash = pair_list[0]
         distro_hash = pair_list[1]
-        if len(pair_list > 2):
+        if len(pair_list) > 2:
             extended_hash = '_'.join(pair_list[2:])
         else:
             extended_hash = None
