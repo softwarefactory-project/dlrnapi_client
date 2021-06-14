@@ -73,7 +73,7 @@ def repo_status(api_instance, options):
     params.distro_hash = options.distro_hash
     if options.success:
         params.success = str(options.success)
-    if options.extended_hash:
+    if options.extended_hash and options.extended_hash != 'None':
         params.extended_hash = options.extended_hash
 
     try:
@@ -100,7 +100,10 @@ def repo_promote(api_instance, options):
     params = dlrnapi_client.Promotion()  # Promotion | The JSON params to post
     params.commit_hash = options.commit_hash
     params.distro_hash = options.distro_hash
-    params.extended_hash = options.extended_hash
+    if options.extended_hash != 'None':
+        params.extended_hash = options.extended_hash
+    else:
+        params.extended_hash = None
     params.promote_name = options.promote_name
     try:
         api_response = api_instance.api_promote_post(params)
@@ -123,7 +126,10 @@ def repo_promote_batch(api_instance, options):
         param = dlrnapi_client.Promotion()
         param.commit_hash = commit_hash
         param.distro_hash = distro_hash
-        param.extended_hash = extended_hash
+        if extended_hash == 'None':
+            param.extended_hash = None
+        else:
+            param.extended_hash = extended_hash
         param.promote_name = options.promote_name
         params.append(param)
     try:
@@ -139,7 +145,7 @@ def get_promotions(api_instance, options):
         params.commit_hash = options.commit_hash
     if options.distro_hash:
         params.distro_hash = options.distro_hash
-    if options.extended_hash:
+    if options.extended_hash and options.extended_hash != 'None':
         params.extended_hash = options.extended_hash
     if options.agg_hash:
         params.aggregate_hash = options.agg_hash
@@ -169,7 +175,7 @@ def report_result(api_instance, options):
     params.url = options.info_url
     params.timestamp = options.timestamp
     params.notes = options.notes
-    if options.extended_hash:
+    if options.extended_hash and options.extended_hash != 'None':
         params.extended_hash = options.extended_hash
 
     if (params.commit_hash and not params.distro_hash) or\
