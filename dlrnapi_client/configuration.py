@@ -82,7 +82,9 @@ class Configuration(object):
         else:
             self.verify_ssl = True
         # Set this to customize the certificate file to verify the peer.
-        self.ssl_ca_cert = None
+        # If SSL_CA_BUNDLE is not set, self.ssl_ca_cert will be None,
+        # so we will use the CA bundle provided by certifi
+        self.ssl_ca_cert = os.environ.get('SSL_CA_BUNDLE')
         # client certificate file
         self.cert_file = None
         # client key file

@@ -136,6 +136,9 @@ Environment variables
    API.
 -  *SSL_VERIFY*: set to ‘0’ to deactivate SSL verification when talking
    to the DLRN API.
+-  *SSL_CA_BUNDLE*: when set to a value, it will instruct the client to
+   use that file to verify SSL certificates, instead of the default CA
+   bundle provided by `certifi`.
 
 Author
 ------
