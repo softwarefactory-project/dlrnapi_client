@@ -3,16 +3,22 @@
 ## Parameters
 
 ```bash
-usage: dlrnapi [-h] --url URL [--username USERNAME] [--password PASSWORD]
+usage: dlrnapi [-h] --url URL [--auth-method AUTH_METHOD] [--username USERNAME] [--password PASSWORD] [--server-principal SERVER_PRINCIPAL]
                {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,repo-promote-batch,promotion-get,commit-import,build-metrics}
 
 optional arguments:
   -h, --help            show this help message and exit
   --url URL             URL to use
+  --auth-method AUTH_METHOD
+                        auth-method to be used, defaults to "DLRNAPI_AUTHMETHOD" environment variable if set
+                        basicAuth otherwise
   --username USERNAME, -u USERNAME
-                        username for authentication, defaults to "DLRNAPI_USERNAME" environment variable if set
+                        username for basicAuth, defaults to "DLRNAPI_USERNAME" environment variable if set
   --password PASSWORD, -p PASSWORD
-                        password for authentication, defaults to "DLRNAPI_PASSWORD" environment variable if set
+                        password for basicAuth, defaults to "DLRNAPI_PASSWORD" environment variable if set
+  --server-principal SERVER_PRINCIPAL, -s SERVER_PRINCIPAL
+                        server_principal for kerberosAuth, defaults to "DLRNAPI_PRINCIPAL" environment
+                        variable if set. Mandatory if kerberosAuth method selected.
 
 subcommands:
   available subcommands

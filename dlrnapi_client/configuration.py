@@ -13,10 +13,17 @@
 
 from __future__ import absolute_import
 
+import base64
 import logging
 import sys
 import os
 import urllib3
+
+try:
+    import gssapi
+# TODO(evallesp): python2 doesn't support ModuleNotFoundError
+except Exception:
+    gssapi = None
 
 from six import iteritems
 from six.moves import http_client as httplib
@@ -58,6 +65,8 @@ class Configuration(object):
         self.username = ""
         # Password for HTTP basic authentication
         self.password = ""
+        # Server principal for HTTP Kerberos authentication
+        self.server_principal = ""
 
         # Logging Settings
         self.logger = {}
@@ -89,6 +98,7 @@ class Configuration(object):
         self.cert_file = None
         # client key file
         self.key_file = None
+        self.gssapi = gssapi
 
     @property
     def logger_file(self):
@@ -191,20 +201,64 @@ class Configuration(object):
         return urllib3.util.make_headers(basic_auth=self.username + ':' +
                                          self.password).get('authorization')
 
-    def auth_settings(self):
+    def get_kerberos_header(self, token):
+        return b"Negotiate " + base64.b64encode(token)
+
+    def get_kerberos_auth_token(self):
+        """Gets HTTP basic authentication header (string).
+
+        :return: The token for Kerberos HTTP authentication.
+        """
+        if self.gssapi is None:
+            raise Exception("Kerberos auth not enabled due to missing "
+                            "gssapi dependency")
+        server_name = self.gssapi.Name(self.server_principal)
+        canon_name = server_name.canonicalize(self.gssapi.MechType.kerberos)
+        ctx = self.gssapi.SecurityContext(name=canon_name, usage='initiate')
+        token = None
+        try:
+            while not ctx.complete:
+                token = ctx.step()
+                if not token:
+                    break
+        except gssapi.raw.exceptions.MissingCredentialsError:
+            # __DEFER_STEP_ERRORS__ is set to True the token is returned even
+            # though any exception is thrown.
+            if token:
+                return self.get_kerberos_header(token)
+            raise Exception("No kerberos credential available. "
+                            "Execute kinit command.")
+        except gssapi.raw.exceptions.InvalidTokenError:
+            # __DEFER_STEP_ERRORS__ is set to True the token is returned even
+            # though any exception is thrown.
+            if token:
+                return self.get_kerberos_header(token)
+            raise Exception("Wrong kerberos credential. Check which auth "
+                            "mechanism the server supports.")
+        except Exception as e:
+            if token:
+                return self.get_kerberos_header(token)
+            raise Exception(e)
+
+        return self.get_kerberos_header(token)
+
+    def auth_settings(self, auth_type):
         """Gets Auth Settings dict for api client.
 
         :return: The Auth Settings information dict.
         """
-        return {
-            'basicAuth':
-                {
-                    'type': 'basic',
-                    'in': 'header',
-                    'key': 'Authorization',
-                    'value': self.get_basic_auth_token()
-                },
+        obtain_auth_token = {
+            'basicAuth': self.get_basic_auth_token,
+            'kerberosAuth': self.get_kerberos_auth_token
+        }
 
+        return {
+            auth_type: {
+                'type': auth_type.split('Auth')[0],
+                'in': 'header',
+                'key': 'Authorization',
+                'value': obtain_auth_token[auth_type]()
+            }
         }
 
     def to_debug_report(self):

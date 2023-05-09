@@ -287,7 +287,7 @@ class DefaultApi(object):
             select_header_content_type(['application/json'])
 
         # Authentication setting
-        auth_settings = ['basicAuth']
+        auth_settings = ['basicAuth', 'kerberosAuth']
 
         return self.api_client.call_api(resource_path, 'POST',
                                         path_params,
@@ -404,7 +404,7 @@ class DefaultApi(object):
             select_header_content_type(['application/json'])
 
         # Authentication setting
-        auth_settings = ['basicAuth']
+        auth_settings = ['basicAuth', 'kerberosAuth']
 
         return self.api_client.call_api(resource_path, 'POST',
                                         path_params,
@@ -524,7 +524,7 @@ class DefaultApi(object):
             select_header_content_type(['application/json'])
 
         # Authentication setting
-        auth_settings = ['basicAuth']
+        auth_settings = ['basicAuth', 'kerberosAuth']
 
         return self.api_client.call_api(resource_path, 'POST',
                                         path_params,
@@ -643,7 +643,7 @@ class DefaultApi(object):
             select_header_content_type(['application/json'])
 
         # Authentication setting
-        auth_settings = ['basicAuth']
+        auth_settings = ['basicAuth', 'kerberosAuth']
 
         return self.api_client.call_api(resource_path, 'POST',
                                         path_params,
@@ -980,7 +980,7 @@ class DefaultApi(object):
             select_header_content_type(['application/json'])
 
         # Authentication setting
-        auth_settings = ['basicAuth']
+        auth_settings = ['basicAuth', 'kerberosAuth']
 
         return self.api_client.call_api(resource_path, 'POST',
                                         path_params,

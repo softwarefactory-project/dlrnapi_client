@@ -5,18 +5,22 @@
     run: playbooks/tox_run.yaml
 
 - job:
-    name: tox-py310-fedora
+    name: tox-pre
     parent: tox
-    pre-run: playbooks/py310-install.yaml
+    pre-run: playbooks/preparation.yaml
     run: playbooks/tox_run.yaml
+
+- job:
+    name: tox-py310-fedora
+    parent: tox-pre
+    pre-run: playbooks/py310-install.yaml
     vars:
       tox_envlist: py310
       python_version: 3.10
 
 - job:
     name: tox-py39-centos-9
-    run: playbooks/tox_run.yaml
-    parent: tox
+    parent: tox-pre
     vars:
       tox_envlist: py39
     nodeset:
@@ -26,7 +30,9 @@
 
 - job:
     name: tox-py36-centos-8
-    parent: tox-py36
+    parent: tox-pre
+    vars:
+      tox_envlist: py36
     nodeset: centos-latest-pod
 
 - project:

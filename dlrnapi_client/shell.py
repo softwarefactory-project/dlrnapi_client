@@ -245,6 +245,13 @@ def main():
     parser.add_argument('--url',
                         required=True,
                         help='URL to use')
+    parser.add_argument('--auth-method',
+                        help='Authentication method to use, defaults to '
+                             '"DLRNAPI_AUTHMETHOD" environment variable if '
+                             'set, basicAuth otherwise',
+                        default=os.getenv('DLRNAPI_AUTHMETHOD', "basicAuth"),
+                        choices=["kerberosAuth", "basicAuth"]
+                        )
     parser.add_argument('--username', '-u',
                         help='username for authentication, defaults to '
                              '"DLRNAPI_USERNAME" environment variable if set',
@@ -254,6 +261,11 @@ def main():
                         help='password for authentication, defaults to '
                              '"DLRNAPI_PASSWORD" environment variable if set',
                         default=os.getenv('DLRNAPI_PASSWORD', None)
+                        )
+    parser.add_argument('--server-principal', '-s',
+                        help='server principal for Kerberos authentication'
+                             '"DLRNAPI_PRINCIPAL" environment variable if set',
+                        default=os.getenv('DLRNAPI_PRINCIPAL', None)
                         )
 
     subparsers = parser.add_subparsers(dest='command',
@@ -459,12 +471,19 @@ def main():
         '--package-name', type=str, required=False,
         help='If specified, only fetch metrics for this package name')
 
-    options, args = parser.parse_known_args(sys.argv[1:])
+    options, _ = parser.parse_known_args(sys.argv[1:])
 
     # create an instance of the API class
-    api_client = dlrnapi_client.ApiClient(host=options.url)
+    api_client = dlrnapi_client.ApiClient(host=options.url,
+                                          auth_method=options.auth_method)
+    # Default None if haven't set.
     dlrnapi_client.configuration.username = options.username
     dlrnapi_client.configuration.password = options.password
+
+    if options.auth_method == "kerberosAuth" and not options.server_principal:
+        raise Exception("ERROR: server-principal argument mandatory with "
+                        "kerberosAuth method.")
+    dlrnapi_client.configuration.server_principal = options.server_principal
     api_instance = dlrnapi_client.DefaultApi(api_client=api_client)
 
     try:

@@ -55,10 +55,11 @@ class ApiClient(object):
     }
 
     def __init__(self, host=None, header_name=None, header_value=None,
-                 cookie=None):
+                 cookie=None, auth_method=None):
         """Constructor of the class."""
         self.rest_client = RESTClientObject()
         self.default_headers = {}
+        self.auth_method = auth_method
         if header_name is not None:
             self.default_headers[header_name] = header_value
         if host is None:
@@ -498,11 +499,15 @@ class ApiClient(object):
         if not auth_settings:
             return
 
-        for auth in auth_settings:
-            auth_setting = config.auth_settings().get(auth)
+        if self.auth_method in auth_settings:
+            try:
+                auth_setting = config.auth_settings(self.auth_method) \
+                                     .get(self.auth_method)
+            except Exception as except_error:
+                raise except_error
             if auth_setting:
                 if not auth_setting['value']:
-                    continue
+                    pass
                 elif auth_setting['in'] == 'header':
                     headers[auth_setting['key']] = auth_setting['value']
                 elif auth_setting['in'] == 'query':
@@ -511,6 +516,10 @@ class ApiClient(object):
                     raise ValueError(
                         'Authentication token must be in `query` or `header`'
                     )
+        else:
+            raise Exception(
+                'Authentication method not allowed for requested endpoint.'
+                )
 
     def __deserialize_file(self, response):
         """Saves response body into a file in a temporary folder.

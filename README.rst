@@ -26,6 +26,12 @@ You can install directly from Github
 (you may need to run ``pip`` with root permission:
 ``sudo pip install git+https://github.com/softwarefactory-project/dlrnapi_client.git``)
 
+In order to support kerberos authentication, you need to execute this command (you need to have gcc and krb5-devel packages installed)
+
+.. code:: sh
+
+   pip install "dlrnapi_client[kerberos] @ git+https://github.com/softwarefactory-project/dlrnapi_client.git"
+
 Then import the package:
 
 .. code:: python
@@ -132,8 +138,15 @@ basicAuth
 Environment variables
 ---------------------
 
+-  *DLRNAPI_AUTHMETHOD*: set the auth method to authenticate against the
+   DLRN API. Choices: kerberosAuth and basicAuth.
+-  *DLRNAPI_USERNAME*: set the username to authenticate against the DLRN
+   API when basicAuth method is selected.
 -  *DLRNAPI_PASSWORD*: set the password to authenticate against the DLRN
-   API.
+   API when basicAuth method is selected.
+-  *DLRNAPI_PRINCIPAL*: set the server principal used to request the token
+   when kerberosAuth method is selected to auth against the DLRN API.
+   API when basicAuth method is selected.
 -  *SSL_VERIFY*: set to ‘0’ to deactivate SSL verification when talking
    to the DLRN API.
 -  *SSL_CA_BUNDLE*: when set to a value, it will instruct the client to

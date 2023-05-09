@@ -6,3 +6,4 @@ pytest-cov
 pytest-html
 randomize>=0.13
 flake8
+mock
