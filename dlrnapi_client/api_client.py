@@ -273,7 +273,8 @@ class ApiClient(object):
                  _return_http_data_only=None, collection_formats=None,
                  _preload_content=True,
                  _request_timeout=None):
-        """Makes the HTTP request (synchronous) and return the deserialized data.
+        """Makes the HTTP request (synchronous) and return the deserialized
+        data.
 
         To make an async request, define a function for callback.
 

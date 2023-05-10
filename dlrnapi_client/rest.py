@@ -187,7 +187,8 @@ class RESTClientObject(object):
                         headers=headers)
                 else:
                     # Cannot generate the request from given parameters
-                    msg = """Cannot prepare a request message for provided arguments.
+                    msg = """Cannot prepare a request message for provided
+                             arguments.
                              Please check that your arguments match declared
                              content type."""
                     raise ApiException(status=0, reason=msg)

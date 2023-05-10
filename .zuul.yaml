@@ -1,15 +1,29 @@
 ---
+- job:
+    name: tox-py27-ci-config
+    pre-run: playbooks/py27-install.yaml
+    run: playbooks/tox_run.yaml
+
+- job:
+    name: tox-py37-ci-config
+    parent: tox-py37
+    pre-run: playbooks/py37-install.yaml
+    run: playbooks/tox_run.yaml
+
 - project:
     name: dlrnapi_client
     check:
       jobs: &jobs
         - tox-pep8:
             nodeset: fedora-latest-pod
-        - tox-py27:
+        - tox-py27-ci-config:
             nodeset: centos-7-pod
+            vars:
+                tox_extra_args: -vv --skip-missing-interpreters=true
+                tox_install_siblings: false
         - tox-py36:
             nodeset: centos-latest-pod
-        - tox-py37:
+        - tox-py37-ci-config:
             nodeset: fedora-latest-pod
         - dlrn-api-functional-centos-7
         - dlrn-api-functional-centos-8
