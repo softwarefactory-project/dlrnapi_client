@@ -267,6 +267,13 @@ def main():
                              '"DLRNAPI_PRINCIPAL" environment variable if set',
                         default=os.getenv('DLRNAPI_PRINCIPAL', None)
                         )
+    parser.add_argument('--force-auth', dest='force_auth',
+                        action='store_true',
+                        help='Use the force-auth mode. In this '
+                             'case, the client will send the '
+                             'auth header to non-protectected '
+                             'by default read-only methods.',
+                        default=False)
 
     subparsers = parser.add_subparsers(dest='command',
                                        title='subcommands',
@@ -475,14 +482,15 @@ def main():
 
     # create an instance of the API class
     api_client = dlrnapi_client.ApiClient(host=options.url,
-                                          auth_method=options.auth_method)
+                                          auth_method=options.auth_method,
+                                          force_auth=options.force_auth)
     # Default None if haven't set.
     dlrnapi_client.configuration.username = options.username
     dlrnapi_client.configuration.password = options.password
 
     if options.auth_method == "kerberosAuth" and not options.server_principal:
-        raise Exception("ERROR: server-principal argument mandatory with "
-                        "kerberosAuth method.")
+        raise Exception("ERROR: server-principal argument mandatory with"
+                        " kerberosAuth method.")
     dlrnapi_client.configuration.server_principal = options.server_principal
     api_instance = dlrnapi_client.DefaultApi(api_client=api_client)
 

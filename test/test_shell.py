@@ -20,11 +20,17 @@ import mock
 import unittest
 
 import dlrnapi_client.shell as shell
+import dlrnapi_client.api_client as api_client
 
 
 def mocked_get(*args, **kwargs):
     response = namedtuple("response", "data")
     return response(data="test")
+
+
+def mocked_auth_header(*args, **kwargs):
+    return {"type": "kerberos", "in": "header", "key": "Authorization",
+            "value": "value"}
 
 
 class TestShell(unittest.TestCase):
@@ -96,6 +102,39 @@ class TestShell(unittest.TestCase):
             config.get_kerberos_auth_token()
         self.assertEqual(str(context.exception), "Kerberos auth not enabled"
                          " due to missing gssapi dependency")
+
+    @mock.patch("dlrnapi_client.configuration.auth_settings",
+                side_effect=mocked_auth_header)
+    @mock.patch("dlrnapi_client.ApiClient.request", side_effect=mocked_get)
+    def test_send_auth_get_force_method(self, call_api, mock_auth):
+        testargs = ["dlrnapi", "--url", "testURL", "--auth-method",
+                    "kerberosAuth", "--force-auth", "--server-principal",
+                    "serverPrinc", "repo-get"]
+        with mock.patch.object(sys, 'argv', testargs):
+            shell.main()
+        auth_method = mock_auth.call_args[0][0]
+        self.assertEqual(auth_method, "kerberosAuth")
+
+    @mock.patch("dlrnapi_client.configuration.auth_settings")
+    @mock.patch("dlrnapi_client.ApiClient.request", side_effect=mocked_get)
+    def test_send_auth_get_non_force_method(self, call_api, mock_auth):
+        testargs = ["dlrnapi", "--url", "testURL", "--auth-method",
+                    "kerberosAuth", "--server-principal", "serverPrinc",
+                    "repo-get"]
+        with mock.patch.object(sys, 'argv', testargs):
+            shell.main()
+        self.assertEqual(mock_auth.called, False)
+
+    @mock.patch("dlrnapi_client.configuration.auth_settings")
+    def test_send_auth_get_force_method_not_allowed(self, mock_auth):
+        client = api_client.ApiClient()
+        client.force_auth = True
+        client.auth_method = ["basicAuth"]
+        with self.assertRaises(Exception) as cm:
+            client.update_params_for_auth(None, None, ["kerberosAuth"])
+        self.assertEqual(str(cm.exception), "Authentication method not"
+                         " allowed for requested endpoint.")
+        self.assertEqual(mock_auth.called, False)
 
 
 if __name__ == '__main__':

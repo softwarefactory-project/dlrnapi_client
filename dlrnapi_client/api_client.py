@@ -55,11 +55,12 @@ class ApiClient(object):
     }
 
     def __init__(self, host=None, header_name=None, header_value=None,
-                 cookie=None, auth_method=None):
+                 cookie=None, auth_method=None, force_auth=None):
         """Constructor of the class."""
         self.rest_client = RESTClientObject()
         self.default_headers = {}
         self.auth_method = auth_method
+        self.force_auth = force_auth
         if header_name is not None:
             self.default_headers[header_name] = header_value
         if host is None:
@@ -125,7 +126,12 @@ class ApiClient(object):
                                                     collection_formats)
 
         # auth setting
-        self.update_params_for_auth(header_params, query_params, auth_settings)
+        try:
+            self.update_params_for_auth(header_params, query_params,
+                                        auth_settings)
+        except Exception as e:
+            print("Exception received while getting auth params: %s" % e)
+            exit(1)
 
         # body
         if body:
@@ -495,6 +501,10 @@ class ApiClient(object):
         :param auth_settings: Authentication setting identifiers list.
         """
         config = Configuration()
+        # force-auth is enabled and the endpoint is unprotected by default.
+        # It has no effect if the selected auth method is not available.
+        if self.force_auth and not auth_settings:
+            auth_settings.append(self.auth_method)
 
         if not auth_settings:
             return

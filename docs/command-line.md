@@ -19,6 +19,8 @@ optional arguments:
   --server-principal SERVER_PRINCIPAL, -s SERVER_PRINCIPAL
                         server_principal for kerberosAuth, defaults to "DLRNAPI_PRINCIPAL" environment
                         variable if set. Mandatory if kerberosAuth method selected.
+  --force-auth          force to use authentication in GET methods. Those methods by default are not protected.
+                        Useful in DLRN deployments with GET endpoints protected.
 
 subcommands:
   available subcommands
