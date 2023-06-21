@@ -33,7 +33,10 @@
     parent: tox-pre
     vars:
       tox_envlist: py36
-    nodeset: centos-latest-pod
+    nodeset:
+      nodes:
+        - name: upstream-centos-8-stream
+          label: upstream-centos-8-stream
 
 - project:
     name: dlrnapi_client

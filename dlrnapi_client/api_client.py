@@ -55,7 +55,7 @@ class ApiClient(object):
     }
 
     def __init__(self, host=None, header_name=None, header_value=None,
-                 cookie=None, auth_method=None, force_auth=None):
+                 cookie=None, auth_method='basicAuth', force_auth=False):
         """Constructor of the class."""
         self.rest_client = RESTClientObject()
         self.default_headers = {}
