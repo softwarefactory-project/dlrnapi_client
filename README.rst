@@ -113,6 +113,8 @@ Class        Method                       HTTP request                   Descrip
 *DefaultApi* `api_repo_status_get`_       **GET** /api/repo_status
 *DefaultApi* `api_report_result_post`_    **POST**/api/report_result
 *DefaultApi* `api_agg_status_get`_        **GET**/api/agg_status
+*DefaultApi* `api_recheck_package_post`_   **POST** /api/recheck_package
+
 ============ ============================ ============================== ===========
 
 Documentation For Models
@@ -166,6 +168,7 @@ Javier Peña (jpena@redhat.com)
 .. _api_last_tested_repo_get: docs/DefaultApi.md#api_last_tested_repo_get
 .. _api_last_tested_repo_post: docs/DefaultApi.md#api_last_tested_repo_post
 .. _api_promote_post: docs/DefaultApi.md#api_promote_post
+.. _api_recheck_package_post: docs/DefaultApi.md#api_recheck_package_post
 .. _api_promote_batch_post: docs/DefaultApi.md#api_promote_batch_post
 .. _api_promotions_get: docs/DefaultApi.md#api_promotions_get
 .. _api_build_metrics_get: docs/DefaultApi.md#api_build_metrics_get

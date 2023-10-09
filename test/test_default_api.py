@@ -110,6 +110,14 @@ class TestDefaultApi(unittest.TestCase):
         self.assertEqual(path, '/api/report_result')
         self.assertEqual(method, 'POST')
 
+    def test_api_recheck_package_post(self):
+        """Test case for recheck_package_post """
+        default_api = DefaultApi(api_client=self.api_client)
+        params = dlrnapi_client.RecheckRequest()
+        path, method = default_api.api_recheck_package_post(params)
+        self.assertEqual(path, '/api/recheck_package')
+        self.assertEqual(method, 'POST')
+
 
 if __name__ == '__main__':
     unittest.main()

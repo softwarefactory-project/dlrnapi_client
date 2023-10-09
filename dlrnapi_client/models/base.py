@@ -1,8 +1,11 @@
 from six import iteritems
 
 
-class BaseApiModel():
+class BaseApiModel(object):
     """BaseApiModel - a model defined to be inherited from other API Models
+
+        It inherits explicitly from 'object' in order to make setters
+        and getters work in python2 from inherited interfaces.
     """
     def to_dict(self):
         """Returns the model properties as a dict """

@@ -1228,3 +1228,29 @@ class DefaultApi(object):
                                         _request_timeout=params.get(
                                             '_request_timeout'),
                                         collection_formats=collection_formats)
+
+    def api_recheck_package_post(self, params):
+        resource_path = '/api/recheck_package'
+        query_params = {}
+        header_params = {}
+
+        query_params["package_name"] = params.package_name
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['basicAuth', 'kerberosAuth']
+
+        return self.api_client.call_api(resource_path, 'POST',
+                                        query_params=query_params,
+                                        header_params=header_params,
+                                        response_type='Recheck',
+                                        auth_settings=auth_settings,
+                                        _return_http_data_only=True,
+                                        _preload_content=True)

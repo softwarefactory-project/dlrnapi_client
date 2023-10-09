@@ -26,6 +26,8 @@ from dlrnapi_client.models.params_2 import Params2  # noqa
 from dlrnapi_client.models.params_3 import Params3  # noqa
 from dlrnapi_client.models.promotion import Promotion  # noqa
 from dlrnapi_client.models.promotion_query import PromotionQuery  # noqa
+from dlrnapi_client.models.recheck_request import Recheck  # noqa
+from dlrnapi_client.models.recheck_request import RecheckRequest  # noqa
 from dlrnapi_client.models.repo import Repo  # noqa
 
 # import apis into sdk package

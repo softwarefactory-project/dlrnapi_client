@@ -225,6 +225,18 @@ def get_metrics_builds(api_instance, options):
         raise e
 
 
+def post_package_recheck(api_instance, options):
+    # RecheckRequest | JSON params to post
+    params = dlrnapi_client.RecheckRequest()
+    params.package_name = options.package_name
+
+    try:
+        api_response = api_instance.api_recheck_package_post(params)
+        return api_response
+    except ApiException as e:
+        raise e
+
+
 command_funcs = {
     'repo-get': get_last_tested_repo,
     'repo-use': post_last_tested_repo,
@@ -236,6 +248,7 @@ command_funcs = {
     'commit-import': import_commit,
     'promotion-get': get_promotions,
     'build-metrics': get_metrics_builds,
+    'package-recheck': post_package_recheck,
 }
 
 
@@ -477,6 +490,14 @@ def main():
     parser_metrics.add_argument(
         '--package-name', type=str, required=False,
         help='If specified, only fetch metrics for this package name')
+
+    # Subcommand package-recheck
+    parser_metrics = subparsers.add_parser(
+        'package-recheck',
+        help='Rechecks a FTBFS package in FAILED status and without any vote')
+    parser_metrics.add_argument(
+        '--package-name', type=str, required=True,
+        help='Package to be rechecked')
 
     options, _ = parser.parse_known_args(sys.argv[1:])
 

@@ -14,6 +14,7 @@ Method |HTTP request |Description
 [**api_repo_status_get**](DefaultApi.md#api_repo_status_get)|**GET** /api/repo_status |
 [**api_agg_status_get**](DefaultApi.md#api_agg_status_get)|**GET** /api/agg_status |
 [**api_report_result_post**](DefaultApi.md#api_report_result_post)|**POST** /api/report_result|
+[**api_recheck_package_post**](DefaultApi.md#api_recheck_package_post)|**POST** /api/recheck_package|
 
 
 # **api_last_tested_repo_get**
@@ -522,6 +523,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CIVote**](CIVote.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+-   **Content-Type**: application/json
+-   **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_recheck_package_post**
+> str api_recheck_package_post(params=params)
+
+Recheck a package that is marked as FAILED (FTBFS)
+
+### Example
+```python
+from __future__ import print_statement
+import time
+import dlrnapi_client
+from dlrnapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure HTTP basic authorization: basicAuth
+dlrnapi_client.configuration.username = 'YOUR_USERNAME'
+dlrnapi_client.configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = dlrnapi_client.DefaultApi()
+params = dlrnapi_client.Recheck() # Params3 | The JSON params to post (optional)
+
+try:
+    api_response = api_instance.api_recheck_package_post(params=params)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->api_recheck_package_post: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**params**|[**RecheckRequest**](RecheckRequest.md)|The JSON params to post|
+
+### Return type
+
+[**Recheck**](Recheck.md)
 
 ### Authorization
 
