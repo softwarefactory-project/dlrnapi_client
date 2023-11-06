@@ -201,12 +201,12 @@ class ApiClient(object):
             obj_dict = obj
         else:
             # Convert model obj to dict except
-            # attributes `swagger_types`, `attribute_map`
+            # attributes `var_types`
             # and attributes which value is not None.
             # Convert attribute name to json key in
             # model definition for request.
-            obj_dict = {obj.attribute_map[attr]: getattr(obj, attr)
-                        for attr, _ in iteritems(obj.swagger_types)
+            obj_dict = {attr: getattr(obj, attr)
+                        for attr, _ in iteritems(obj.var_types)
                         if getattr(obj, attr) is not None}
 
         return {key: self.sanitize_for_serialization(val)
@@ -245,7 +245,7 @@ class ApiClient(object):
         if data is None:
             return None
 
-        if type(klass) == str:
+        if isinstance(klass, str):
             if klass.startswith('list['):
                 sub_kls = re.match(r'list\[(.*)\]', klass).group(1)
                 return [self.__deserialize(sub_data, sub_kls)
@@ -628,14 +628,14 @@ class ApiClient(object):
         """
         instance = klass()
 
-        if not instance.swagger_types:
+        if not instance.var_types:
             return data
 
-        for attr, attr_type in iteritems(instance.swagger_types):
+        for attr, attr_type in iteritems(instance.var_types):
             if data is not None \
-               and instance.attribute_map[attr] in data \
+               and attr in data \
                and isinstance(data, (list, dict)):
-                value = data[instance.attribute_map[attr]]
+                value = data[attr]
                 setattr(instance, attr, self.__deserialize(value, attr_type))
 
         return instance

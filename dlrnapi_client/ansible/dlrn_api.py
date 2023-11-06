@@ -401,7 +401,7 @@ def main():
 
     try:
         output = command_funcs[action](api_instance, options)
-        if type(output) == list:
+        if isinstance(output, list):
             output_f = [x.to_dict() for x in output]
         else:
             output_f = output.to_dict()
