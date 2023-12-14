@@ -1250,7 +1250,7 @@ class DefaultApi(object):
         return self.api_client.call_api(resource_path, 'POST',
                                         query_params=query_params,
                                         header_params=header_params,
-                                        response_type='Recheck',
+                                        response_type='RecheckResponse',
                                         auth_settings=auth_settings,
                                         _return_http_data_only=True,
                                         _preload_content=True)

@@ -40,9 +40,10 @@ class RecheckRequest(BaseApiModel):
         self._package_name = package_name
 
 
-class Recheck(BaseApiModel):
+class RecheckResponse(BaseApiModel):
     def __init__(self, result=None):
-        """Recheck - a model defines params for recheck-request action response
+        """RecheckResponse - a model defines params for recheck-request
+            action response
 
         :param str result: Result of the command
         """

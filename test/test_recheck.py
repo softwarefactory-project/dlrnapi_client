@@ -4,7 +4,7 @@ from __future__ import absolute_import
 import unittest
 
 from dlrnapi_client.models.recheck_request import RecheckRequest
-from dlrnapi_client.models.recheck_request import Recheck
+from dlrnapi_client.models.recheck_request import RecheckResponse
 
 
 class TestRecheckRequest(unittest.TestCase):
@@ -32,8 +32,8 @@ class TestRecheckRequest(unittest.TestCase):
                                               " must not be `None`")
 
 
-class TestRecheck(unittest.TestCase):
-    """Recheck unit test stubs """
+class TestRecheckResponse(unittest.TestCase):
+    """RecheckResponse unit test stubs """
 
     def setUp(self):
         pass
@@ -41,9 +41,9 @@ class TestRecheck(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testRecheck(self):
-        """Test Recheck """
-        model = Recheck()
+    def testRecheckResponse(self):
+        """Test RecheckResponse """
+        model = RecheckResponse()
         expected = {'result': None}
         self.assertEqual(model.to_dict(), expected)
 

@@ -554,7 +554,7 @@ dlrnapi_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = dlrnapi_client.DefaultApi()
-params = dlrnapi_client.Recheck() # Params3 | The JSON params to post (optional)
+params = dlrnapi_client.RecheckRequest() # Params3 | The JSON params to post (optional)
 
 try:
     api_response = api_instance.api_recheck_package_post(params=params)
@@ -571,7 +571,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Recheck**](Recheck.md)
+[**RecheckResponse**](RecheckResponse.md)
 
 ### Authorization
 
