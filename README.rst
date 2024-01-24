@@ -127,6 +127,8 @@ Documentation For Models
 -  `Params2`_
 -  `Params3`_
 -  `Promotion`_
+-  `RecheckRequest_`
+-  `RecheckResponse_`
 -  `Repo`_
 
 Documentation For Authorization
@@ -183,4 +185,6 @@ Javier Peña (jpena@redhat.com)
 .. _Params2: docs/Params2.md
 .. _Params3: docs/Params3.md
 .. _Promotion: docs/Promotion.md
+.. _RecheckRequest: docs/RecheckRequest.md
+.. _RecheckResponse: docs/RecheckResponse.md
 .. _Repo: docs/Repo.md

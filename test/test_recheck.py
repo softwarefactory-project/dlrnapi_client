@@ -28,8 +28,8 @@ class TestRecheckRequest(unittest.TestCase):
         model = RecheckRequest()
         with self.assertRaises(ValueError) as exc:
             model.package_name = None
-        self.assertEquals(str(exc.exception), "Invalid value for `package_name`,"
-                                              " must not be `None`")
+        self.assertEqual(str(exc.exception), "Invalid value for `package_name`,"
+                                             " must not be `None`")
 
 
 class TestRecheckResponse(unittest.TestCase):

@@ -25,7 +25,7 @@ optional arguments:
 subcommands:
   available subcommands
 
-  {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,repo-promote-batch,promotion-get,commit-import,build-metrics}
+  {repo-get,repo-use,repo-status,agg-status,report-result,repo-promote,repo-promote-batch,promotion-get,commit-import,build-metrics,package-recheck}
     repo-get            Get last tested repo
     repo-use            Get the last tested repo since a specific time (optionally for a CI job), and add an "in progress" entry in the CI job table for this.
     repo-status         Get all the CI reports for a specific repository.
@@ -36,6 +36,7 @@ subcommands:
     promotion-get       Get information about promotions
     commit-import       Import a commit built by another instance
     build-metrics       Fetch build metrics in a time period
+    package-recheck     Recheck one or more failed to build packages
 
 ```
 The **url** parameter is mandatory in all cases. **username** and **password**

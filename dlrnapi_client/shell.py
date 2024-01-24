@@ -227,14 +227,20 @@ def get_metrics_builds(api_instance, options):
 
 def post_package_recheck(api_instance, options):
     # RecheckRequest | JSON params to post
-    params = dlrnapi_client.RecheckRequest()
-    params.package_name = options.package_name
-
-    try:
-        api_response = api_instance.api_recheck_package_post(params)
-        return api_response
-    except ApiException as e:
-        raise e
+    failed_packages = []
+    for package_name in options.package_name:
+        params = dlrnapi_client.RecheckRequest(package_name=package_name)
+        try:
+            api_response = api_instance.api_recheck_package_post(params)
+        except ApiException as e:
+            response_body = json.loads(e.body)
+            error_message = response_body.get("message", "Unexpected")
+            failed_packages.append("Package {} error is: {}".format(
+                                   package_name, error_message))
+    if failed_packages:
+        raise ApiException("Failed to recheck the following packages: {}"
+                           .format(failed_packages))
+    return api_response
 
 
 command_funcs = {
@@ -495,9 +501,11 @@ def main():
     parser_metrics = subparsers.add_parser(
         'package-recheck',
         help='Rechecks a FTBFS package in FAILED status and without any vote')
-    parser_metrics.add_argument(
-        '--package-name', type=str, required=True,
-        help='Package to be rechecked')
+    parser_metrics.add_argument('--package-name', type=str, nargs='*',
+                                help="List of packages to be rechecked separated"
+                                " by whitespace as an example"
+                                " '--package-name 1 2",
+                                required=True)
 
     options, _ = parser.parse_known_args(sys.argv[1:])
 

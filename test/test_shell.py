@@ -136,6 +136,34 @@ class TestShell(unittest.TestCase):
                          " allowed for requested endpoint.")
         self.assertEqual(mock_auth.called, False)
 
+    @mock.patch("dlrnapi_client.DefaultApi.api_recheck_package_post")
+    def test_post_package_recheck(self, rchek_post):
+        rchek_post.return_value = {"result": "ok"}
+        testargs = ["dlrnapi", "--url", "testURL", "--auth-method",
+                    "kerberosAuth", "--server-principal",
+                    "serverPrinc", "package-recheck", "--package-name",
+                    "python-stevedore"]
+        with mock.patch.object(sys, 'argv', testargs):
+            shell.main()
+            self.assertEqual(rchek_post.call_args[0][0].package_name,
+                             "python-stevedore")
+            self.assertEqual(rchek_post.call_count, 1)
+
+    @mock.patch("dlrnapi_client.DefaultApi.api_recheck_package_post")
+    def test_post_multiple_package_recheck(self, rchek_post):
+        rchek_post.return_value = {"result": "ok"}
+        package_list = ["python-stevedore", "puppet-stdlib", "python-tcib"]
+        testargs = ["dlrnapi", "--url", "testURL", "--auth-method",
+                    "kerberosAuth", "--server-principal",
+                    "serverPrinc", "package-recheck", "--package-name",
+                    package_list[0], package_list[1], package_list[2]]
+        with mock.patch.object(sys, 'argv', testargs):
+            shell.main()
+            for index, element in enumerate(rchek_post.call_args_list):
+                self.assertEqual(element.args[0].package_name,
+                                 package_list[index])
+            self.assertEqual(rchek_post.call_count, len(package_list))
+
 
 if __name__ == '__main__':
     unittest.main()
