@@ -11,11 +11,11 @@
     run: playbooks/tox_run.yaml
 
 - job:
-    name: tox-py310-fedora
+    name: tox-py312-fedora
     parent: tox-pre
-    pre-run: playbooks/py310-install.yaml
+    pre-run: playbooks/py312-install.yaml
     vars:
-      tox_envlist: py310
+      tox_envlist: py312
       python_version: 3.10
 
 - job:
@@ -27,16 +27,6 @@
       nodes:
         - label: cloud-centos-9-stream
           name: cloud-centos-9-stream
-
-- job:
-    name: tox-py36-centos-8
-    parent: tox-pre
-    vars:
-      tox_envlist: py36
-    nodeset:
-      nodes:
-        - name: upstream-centos-8-stream
-          label: upstream-centos-8-stream
 
 - project:
     name: dlrnapi_client
@@ -52,12 +42,13 @@
             vars:
                 tox_extra_args: -vv --skip-missing-interpreters=true
                 tox_install_siblings: false
-        - tox-py36-centos-8
         - tox-py39-centos-9
-        - tox-py310-fedora:
-            nodeset: fedora-latest-pod
-        - dlrn-api-functional-centos-7
-        - dlrn-api-functional-centos-8
+        - tox-py312-fedora:
+            nodeset:
+              nodes:
+                - name: zuul-worker-f40
+                  label: zuul-worker-f40
+        #- dlrn-api-functional-centos-9
     gate:
       jobs: *jobs
     release:
