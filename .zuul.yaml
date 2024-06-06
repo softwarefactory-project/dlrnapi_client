@@ -48,7 +48,7 @@
               nodes:
                 - name: zuul-worker-f40
                   label: zuul-worker-f40
-        #- dlrn-api-functional-centos-9
+        - dlrn-api-functional-centos-9
     gate:
       jobs: *jobs
     release:
