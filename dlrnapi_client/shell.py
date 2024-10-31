@@ -507,7 +507,7 @@ def main():
                                 " '--package-name 1 2",
                                 required=True)
 
-    options, _ = parser.parse_known_args(sys.argv[1:])
+    options = parser.parse_args(sys.argv[1:])
 
     # create an instance of the API class
     api_client = dlrnapi_client.ApiClient(host=options.url,
