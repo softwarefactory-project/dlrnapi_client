@@ -1,10 +1,5 @@
 ---
 - job:
-    name: tox-py27-centos-7
-    pre-run: playbooks/py27-install.yaml
-    run: playbooks/tox_run.yaml
-
-- job:
     name: tox-pre
     parent: tox
     pre-run: playbooks/preparation.yaml
@@ -34,14 +29,6 @@
       jobs: &jobs
         - tox-pep8:
             nodeset: fedora-latest-pod
-        - tox-py27-centos-7:
-            nodeset:
-              nodes:
-                - name: centos-7
-                  label: rdo-centos-7
-            vars:
-                tox_extra_args: -vv --skip-missing-interpreters=true
-                tox_install_siblings: false
         - tox-py39-centos-9
         - tox-py312-fedora:
             nodeset:

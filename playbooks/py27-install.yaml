@@ -1,8 +1,0 @@
-- hosts: all
-  tasks:
-    - name: Install python2-devel
-      package:
-        name:
-          - python2-devel
-          - python2
-        state: present
