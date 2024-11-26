@@ -1231,11 +1231,7 @@ class DefaultApi(object):
 
     def api_recheck_package_post(self, params):
         resource_path = '/api/recheck_package'
-        query_params = {}
         header_params = {}
-
-        query_params["package_name"] = params.package_name
-
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])
@@ -1248,7 +1244,7 @@ class DefaultApi(object):
         auth_settings = ['basicAuth', 'kerberosAuth']
 
         return self.api_client.call_api(resource_path, 'POST',
-                                        query_params=query_params,
+                                        body=params,
                                         header_params=header_params,
                                         response_type='RecheckResponse',
                                         auth_settings=auth_settings,
